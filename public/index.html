@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Wyvern Systems — software, systems, and technical consulting."
+    />
+    <title>Wyvern Systems</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><path fill='%23c9a227' d='M6 22 L16 6 L26 22 L20 22 L16 14 L12 22 Z'/></svg>" />
+  </head>
+  <body>
+    <div class="noise" aria-hidden="true"></div>
+    <header class="site-header">
+      <a class="logo" href="#top" id="top">
+        <span class="logo-mark" aria-hidden="true">
+          <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M24 4L8 38h8l8-18 8 18h8L24 4z"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M24 20v14"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+            />
+          </svg>
+        </span>
+        <span class="logo-text">Wyvern Systems</span>
+      </a>
+      <nav class="nav" aria-label="Primary">
+        <a href="#work">Work</a>
+        <a href="#about">About</a>
+        <a href="#contact" class="nav-cta">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <p class="eyebrow">Technical consulting · LLC</p>
+        <h1 class="hero-title">
+          Build systems that
+          <span class="accent">stay aloft</span>
+        </h1>
+        <p class="hero-lead">
+          Wyvern Systems helps teams ship reliable software—architecture,
+          implementation, and the glue in between—without the drama.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#contact">Start a conversation</a>
+          <a class="btn btn-ghost" href="#work">What we do</a>
+        </div>
+      </section>
+
+      <section id="work" class="section cards-section">
+        <h2 class="section-title">What we do</h2>
+        <div class="cards">
+          <article class="card">
+            <h3>Systems &amp; architecture</h3>
+            <p>
+              Design boundaries, APIs, and data flows that scale with your
+              product—not against it.
+            </p>
+          </article>
+          <article class="card">
+            <h3>Implementation</h3>
+            <p>
+              Hands-on delivery: prototypes, refactors, and production-grade
+              code paths you can own.
+            </p>
+          </article>
+          <article class="card">
+            <h3>Technical leadership</h3>
+            <p>
+              Reviews, roadmaps, and pragmatic guidance so your team moves
+              faster with fewer surprises.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section id="about" class="section about">
+        <div class="about-inner">
+          <h2 class="section-title">About Wyvern Systems</h2>
+          <p class="about-copy">
+            We’re a small, senior-led practice focused on clarity and
+            durability. Whether you’re stabilizing a legacy stack or standing
+            up something new, we work alongside your team and leave things
+            better documented than we found them.
+          </p>
+        </div>
+      </section>
+
+      <section id="contact" class="section contact">
+        <h2 class="section-title">Contact</h2>
+        <p class="contact-lead">
+          Tell us what you’re building. We’ll respond within a few business
+          days.
+        </p>
+        <a class="btn btn-primary btn-large" href="mailto:hello@wyvernsystems.com"
+          >hello@wyvernsystems.com</a
+        >
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>&copy; <span id="year"></span> Wyvern Systems, LLC. All rights reserved.</p>
+    </footer>
+
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
