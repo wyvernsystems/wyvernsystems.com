@@ -1,5 +1,5 @@
 /**
- * Reads public/wyvern-systems-logo-original.png and writes:
+ * Reads public/images/wyvern-systems-logo-original.png and writes rasters under public/images/:
  * - wyvern-systems-logo-matrix.png — Matrix-style green, transparent outer white
  * - Full-size SVG wrappers + square PNG/SVG at 600×600 and 128×128 (letterboxed, transparent pad)
  */
@@ -11,8 +11,9 @@ import { fileURLToPath } from "node:url";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = join(__dirname, "..");
 const pub = join(root, "public");
-const original = join(pub, "wyvern-systems-logo-original.png");
-const outMatrix = join(pub, "wyvern-systems-logo-matrix.png");
+const img = join(pub, "images");
+const original = join(img, "wyvern-systems-logo-original.png");
+const outMatrix = join(img, "wyvern-systems-logo-matrix.png");
 const SQUARE_SIZES = [600, 128];
 
 function lerp(a, b, t) {
@@ -150,41 +151,41 @@ await sharp(data, { raw: { width: w, height: h, channels: 4 } }).png().toFile(ou
 
 writeRasterSvg(
   join(pub, "wyvern-systems-logo.svg"),
-  "wyvern-systems-logo-original.png",
+  "images/wyvern-systems-logo-original.png",
   "Wyvern Systems logo (original raster)",
   w,
   h,
 );
 writeRasterSvg(
   join(pub, "wyvern-systems-logo-original.svg"),
-  "wyvern-systems-logo-original.png",
+  "images/wyvern-systems-logo-original.png",
   "Wyvern Systems logo (original raster)",
   w,
   h,
 );
 writeRasterSvg(
   join(pub, "wyvern-systems-logo-matrix.svg"),
-  "wyvern-systems-logo-matrix.png",
+  "images/wyvern-systems-logo-matrix.png",
   "Wyvern Systems logo (Matrix green raster)",
   w,
   h,
 );
 
 for (const sq of SQUARE_SIZES) {
-  const outOrigSq = join(pub, `wyvern-systems-logo-original-${sq}.png`);
-  const outMatrixSq = join(pub, `wyvern-systems-logo-matrix-${sq}.png`);
+  const outOrigSq = join(img, `wyvern-systems-logo-original-${sq}.png`);
+  const outMatrixSq = join(img, `wyvern-systems-logo-matrix-${sq}.png`);
   await pngToSquarePng(original, outOrigSq, sq);
   await pngToSquarePng(outMatrix, outMatrixSq, sq);
   writeRasterSvg(
     join(pub, `wyvern-systems-logo-original-${sq}.svg`),
-    `wyvern-systems-logo-original-${sq}.png`,
+    `images/wyvern-systems-logo-original-${sq}.png`,
     `Wyvern Systems logo original (${sq}×${sq})`,
     sq,
     sq,
   );
   writeRasterSvg(
     join(pub, `wyvern-systems-logo-matrix-${sq}.svg`),
-    `wyvern-systems-logo-matrix-${sq}.png`,
+    `images/wyvern-systems-logo-matrix-${sq}.png`,
     `Wyvern Systems logo Matrix green (${sq}×${sq})`,
     sq,
     sq,

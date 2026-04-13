@@ -19,7 +19,7 @@ function WyvernEmblem() {
     <div className="wyvern-emblem" aria-hidden="true">
       <img
         className="dragon-emblem-img"
-        src={`${import.meta.env.BASE_URL}wyvern-systems-logo-matrix.png`}
+        src={`${import.meta.env.BASE_URL}images/wyvern-systems-logo-matrix.png`}
         width={1024}
         height={558}
         decoding="async"

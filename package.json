@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "node scripts/build-og-image.mjs && vite build",
+    "build": "vite build",
     "build-og-image": "node scripts/build-og-image.mjs",
     "preview": "vite preview",
     "fill-dragon-holes": "node scripts/fill-dragon-holes.mjs",

@@ -9,7 +9,7 @@ import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const input = join(__dirname, "..", "public", "wyvern-systems-logo-matrix.png");
+const input = join(__dirname, "..", "public", "images", "wyvern-systems-logo-matrix.png");
 
 const { data, info } = await sharp(input).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
 const w = info.width;

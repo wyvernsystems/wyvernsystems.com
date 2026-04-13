@@ -227,7 +227,7 @@ a.btn {
   filter: drop-shadow(0 0 22px var(--matrix-glow));
 }
 
-/* Matrix logo PNG; intrinsic 1024×558 (matches wyvern-systems-logo-original.png) */
+/* Matrix logo PNG; intrinsic 1024×558 (public/images/wyvern-systems-logo-matrix.png) */
 .dragon-emblem-img {
   display: block;
   width: 100%;

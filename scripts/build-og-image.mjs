@@ -1,5 +1,5 @@
 /**
- * Writes public/og-image.png (1200×630) for Open Graph / Twitter cards.
+ * Writes public/images/og-image.png (1200×630) for Open Graph / Twitter cards.
  * Matrix rain + logo + hero copy + consulting boxes; reproducible (seeded RNG).
  */
 import sharp from "sharp";
@@ -10,8 +10,9 @@ import { fileURLToPath } from "node:url";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = join(__dirname, "..");
 const pub = join(root, "public");
-const logoPath = join(pub, "wyvern-systems-logo-matrix.png");
-const outPath = join(pub, "og-image.png");
+const img = join(pub, "images");
+const logoPath = join(img, "wyvern-systems-logo-matrix.png");
+const outPath = join(img, "og-image.png");
 
 const W = 1200;
 const H = 630;
