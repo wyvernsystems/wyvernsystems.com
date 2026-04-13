@@ -1,5 +1,7 @@
 import { useId } from "react";
 import { useReveal } from "./hooks/useReveal.js";
+import MatrixRain from "./components/MatrixRain.jsx";
+import WyvernBackdrop from "./components/WyvernBackdrop.jsx";
 
 const LINKEDIN = "https://www.linkedin.com/in/ron-picard-8b7b3059";
 const RON_SITE = "https://ronpicard.com";
@@ -16,31 +18,19 @@ const SPECTRUM = [
   "& more",
 ];
 
-const EMBERS = [
-  { l: 6, t: 72, d: 0 },
-  { l: 14, t: 38, d: 1.2 },
-  { l: 22, t: 55, d: 2.4 },
-  { l: 78, t: 42, d: 0.6 },
-  { l: 88, t: 68, d: 1.8 },
-  { l: 52, t: 18, d: 3 },
-  { l: 65, t: 82, d: 2 },
-  { l: 38, t: 28, d: 4 },
-];
-
 function WyvernEmblem() {
   const gid = useId().replace(/:/g, "");
   return (
     <div className="wyvern-emblem" aria-hidden="true">
       <svg viewBox="0 0 200 220" fill="none" xmlns="http://www.w3.org/2000/svg" className="wyvern-svg">
         <defs>
-          <linearGradient id={`${gid}-fire`} x1="50%" y1="100%" x2="50%" y2="0%">
-            <stop offset="0%" stopColor="#4a0a12" />
-            <stop offset="35%" stopColor="#9b1c1c" />
-            <stop offset="70%" stopColor="#e85a28" />
-            <stop offset="100%" stopColor="#ffd88a" />
+          <linearGradient id={`${gid}-mx`} x1="50%" y1="100%" x2="50%" y2="0%">
+            <stop offset="0%" stopColor="#003311" />
+            <stop offset="40%" stopColor="#008822" />
+            <stop offset="100%" stopColor="#66ff99" />
           </linearGradient>
           <filter id={`${gid}-glow`} x="-40%" y="-40%" width="180%" height="180%">
-            <feGaussianBlur stdDeviation="5" result="b" />
+            <feGaussianBlur stdDeviation="4" result="b" />
             <feMerge>
               <feMergeNode in="b" />
               <feMergeNode in="SourceGraphic" />
@@ -50,24 +40,24 @@ function WyvernEmblem() {
         <g filter={`url(#${gid}-glow)`} className="wyvern-wings">
           <path
             d="M100 28 L32 188h36l32-88 32 88h36L100 28z"
-            stroke={`url(#${gid}-fire)`}
+            stroke={`url(#${gid}-mx)`}
             strokeWidth="2.5"
             strokeLinejoin="round"
             className="wyvern-body-stroke"
           />
           <path
             d="M100 78v72M62 128h76"
-            stroke="#ffd88a"
+            stroke="#88ffaa"
             strokeWidth="2.2"
             strokeLinecap="round"
             opacity="0.95"
           />
           <path
             d="M48 96 Q12 72 4 36M152 96 Q188 72 196 36"
-            stroke="#e85a28"
+            stroke="#00ff55"
             strokeWidth="2"
             strokeLinecap="round"
-            opacity="0.65"
+            opacity="0.55"
           />
         </g>
       </svg>
@@ -89,30 +79,15 @@ export default function App() {
 
   return (
     <>
-      <div className="page-dragon-skin" aria-hidden="true" />
-      <div className="grain" aria-hidden="true" />
+      <WyvernBackdrop />
+      <MatrixRain />
+      <div className="matrix-vignette" aria-hidden="true" />
+      <div className="grain matrix-grain" aria-hidden="true" />
 
       <header className="hero" id="top">
         <div className="hero-bg">
-          <img
-            className="hero-bg-img"
-            src="/images/hero-lair.jpg"
-            alt=""
-            width={2000}
-            height={1333}
-            fetchPriority="high"
-          />
           <div className="hero-bg-scrim" />
-          <div className="hero-dragon-glow" aria-hidden="true" />
-        </div>
-        <div className="embers" aria-hidden="true">
-          {EMBERS.map((e, i) => (
-            <span
-              key={i}
-              className="dragon-ember"
-              style={{ left: `${e.l}%`, top: `${e.t}%`, animationDelay: `${e.d}s` }}
-            />
-          ))}
+          <div className="hero-matrix-scan" aria-hidden="true" />
         </div>
 
         <div className="hero-content">
@@ -209,13 +184,6 @@ export default function App() {
           <a href={RON_SITE} rel="noopener noreferrer" target="_blank">
             ronpicard.com
           </a>
-        </p>
-        <p className="footer-credits">
-          Image:{" "}
-          <a href="https://unsplash.com/license" rel="noopener noreferrer" target="_blank">
-            Unsplash
-          </a>{" "}
-          — <a href="/images/ATTRIBUTION.txt">credits</a>
         </p>
       </footer>
     </>

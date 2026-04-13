@@ -4,8 +4,8 @@ Marketing site for **Wyvern Systems, LLC** — a **React** app built with [Vite]
 
 ## Contents
 
-- **`src/`** — `App.jsx`, entrypoint, and global styles (`index.css`).
-- **`public/`** — Static assets copied to the build root: **`CNAME`**, **`images/`** (hero photo + `ATTRIBUTION.txt`, Unsplash).
+- **`src/`** — `App.jsx`, entrypoint, global styles (`index.css`), and **`components/`** (matrix rain + wyvern backdrop).
+- **`public/`** — Static assets copied to the build root (e.g. **`CNAME`** for the custom domain).
 
 ## Develop
 
