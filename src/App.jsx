@@ -80,9 +80,9 @@ export default function App() {
   return (
     <>
       <WyvernBackdrop />
-      <MatrixRain />
       <div className="matrix-vignette" aria-hidden="true" />
       <div className="grain matrix-grain" aria-hidden="true" />
+      <MatrixRain />
 
       <header className="hero" id="top">
         <div className="hero-bg">
