@@ -18,7 +18,7 @@ export default function MatrixRain() {
     let w = 0;
     let h = 0;
     let dpr = 1;
-    const fontSize = 15;
+    const fontSize = 16;
     let drops = [];
     let raf = 0;
 
@@ -39,18 +39,19 @@ export default function MatrixRain() {
     window.addEventListener("resize", layout);
 
     function tick() {
-      ctx.fillStyle = "rgba(0, 6, 2, 0.07)";
+      ctx.globalCompositeOperation = "source-over";
+      ctx.fillStyle = "rgba(0, 0, 0, 0.09)";
       ctx.fillRect(0, 0, w, h);
-      ctx.font = `${fontSize}px "Share Tech Mono", ui-monospace, monospace`;
+      ctx.font = `${fontSize}px "Share Tech Mono", "Courier New", Courier, monospace`;
 
       for (let i = 0; i < drops.length; i++) {
         const ch = CHARS[Math.floor(Math.random() * CHARS.length)];
         const x = i * fontSize;
         const y = drops[i] * fontSize;
-        const flash = Math.random() > 0.992;
-        ctx.fillStyle = flash ? "#d4ffd4" : "#00dd44";
-        ctx.shadowColor = flash ? "#00ff66" : "#003311";
-        ctx.shadowBlur = flash ? 8 : 0;
+        const flash = Math.random() > 0.988;
+        ctx.fillStyle = flash ? "#ffffff" : "#00ff41";
+        ctx.shadowColor = flash ? "#00ff66" : "#00aa33";
+        ctx.shadowBlur = flash ? 10 : 3;
         ctx.fillText(ch, x, y);
         ctx.shadowBlur = 0;
 
