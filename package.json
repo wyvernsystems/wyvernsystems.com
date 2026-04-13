@@ -9,7 +9,8 @@
     "preview": "vite preview",
     "fill-dragon-holes": "node scripts/fill-dragon-holes.mjs",
     "remove-dragon-rock": "node scripts/remove-dragon-rock.mjs",
-    "build-dragon-icon": "node scripts/build-dragon-icon.mjs"
+    "build-dragon-icon": "node scripts/build-dragon-assets.mjs",
+    "build-dragon-assets": "node scripts/build-dragon-assets.mjs"
   },
   "dependencies": {
     "react": "^19.1.0",

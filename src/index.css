@@ -227,7 +227,7 @@ a.btn {
   filter: drop-shadow(0 0 22px var(--matrix-glow));
 }
 
-/* Colored dragon PNG (transparent outside + leg gap); intrinsic 1024×558 */
+/* Green dragon PNG; intrinsic 1024×558 (matches dragon-original.png) */
 .dragon-emblem-img {
   display: block;
   width: 100%;
