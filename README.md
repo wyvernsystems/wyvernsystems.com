@@ -4,7 +4,8 @@ Static marketing site for **Wyvern Systems, LLC**, published with [GitHub Pages]
 
 ## Contents
 
-- **`public/`** — Site root served by Pages (`index.html`, `styles.css`, `CNAME` for the custom domain).
+- **`public/`** — Site root served by Pages (`index.html`, `styles.css`, `CNAME`, `images/`).
+- **`public/images/`** — Hero and section photos (Unsplash; see `public/images/ATTRIBUTION.txt`).
 
 ## Local preview
 

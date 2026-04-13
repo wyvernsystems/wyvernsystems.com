@@ -5,258 +5,194 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="Wyvern Systems — software, systems, and technical consulting."
+      content="Wyvern Systems, LLC — consulting in AI, software, hardware, engineering, aviation, and flight test."
     />
     <title>Wyvern Systems</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Outfit:wght@300;400;500;600&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><path fill='%23c9a227' d='M6 22 L16 6 L26 22 L20 22 L16 14 L12 22 Z'/></svg>" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><path fill='%23c9a962' d='M6 22 L16 6 L26 22 L20 22 L16 14 L12 22 Z'/></svg>"
+    />
   </head>
   <body>
-    <script>
-      document.documentElement.classList.add("js");
-    </script>
-    <div class="noise" aria-hidden="true"></div>
-    <div class="hero-backdrop" aria-hidden="true">
-      <div class="hero-orb hero-orb--1"></div>
-      <div class="hero-orb hero-orb--2"></div>
-      <div class="hero-grid"></div>
-    </div>
+    <div class="grain" aria-hidden="true"></div>
 
-    <header class="site-header">
-      <div class="site-header-inner">
-        <a class="logo" href="#top" id="top">
-          <span class="logo-mark" aria-hidden="true">
-            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M24 4L8 38h8l8-18 8 18h8L24 4z"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linejoin="round"
-              />
-              <path
-                d="M24 20v14"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-              />
-            </svg>
-          </span>
-          <span class="logo-text">Wyvern Systems</span>
-        </a>
-        <nav class="nav" aria-label="Primary">
-          <a href="#work">Work</a>
-          <a href="#about">About</a>
-          <a href="#contact" class="nav-cta">Contact</a>
-        </nav>
+    <header class="hero" id="top">
+      <div class="hero-bg">
+        <img
+          class="hero-bg-img"
+          src="images/hero-aviation.jpg"
+          alt=""
+          width="2000"
+          height="1333"
+          fetchpriority="high"
+        />
+        <div class="hero-bg-scrim"></div>
       </div>
+      <div class="hero-content">
+        <div class="wyvern-mark" aria-hidden="true">
+          <svg viewBox="0 0 120 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M60 8 L18 132h22l20-52 20 52h22L60 8z"
+              stroke="currentColor"
+              stroke-width="3"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M60 52v48M38 88h44"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+            />
+            <path
+              d="M28 72 Q8 60 4 40M92 72 Q112 60 116 40"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              opacity="0.7"
+            />
+          </svg>
+        </div>
+        <p class="hero-llc">Limited liability company</p>
+        <h1 class="hero-title">Wyvern Systems</h1>
+        <p class="hero-tagline">
+          Consulting services specializing in
+          <span class="hero-focus">AI</span>, <span class="hero-focus">software</span>,
+          <span class="hero-focus">hardware</span>, <span class="hero-focus">engineering</span>,
+          <span class="hero-focus">aviation</span>, and <span class="hero-focus">flight test</span>.
+        </p>
+        <ul class="pill-row" aria-label="Focus areas">
+          <li>Artificial intelligence</li>
+          <li>Software systems</li>
+          <li>Hardware &amp; integration</li>
+          <li>Engineering</li>
+          <li>Aviation</li>
+          <li>Flight test</li>
+        </ul>
+        <div class="hero-cta">
+          <a class="btn btn-gold" href="mailto:hello@wyvernsystems.com">Get in touch</a>
+          <a
+            class="btn btn-outline"
+            href="https://www.linkedin.com/in/ron-picard-8b7b3059"
+            rel="noopener noreferrer"
+            target="_blank"
+            >LinkedIn</a
+          >
+          <a class="btn btn-outline" href="https://ronpicard.com" rel="noopener noreferrer" target="_blank"
+            >ronpicard.com</a
+          >
+        </div>
+      </div>
+      <div class="scroll-hint" aria-hidden="true">Scroll</div>
     </header>
 
     <main>
-      <section class="hero">
-        <div class="hero-inner">
-          <p class="eyebrow">Technical consulting · LLC</p>
-          <h1 class="hero-title">
-            Build systems that
-            <span class="accent">stay aloft</span>
-          </h1>
-          <p class="hero-lead">
-            Wyvern Systems helps teams ship reliable software—architecture,
-            implementation, and the glue in between—without the drama.
+      <section class="panel panel-split">
+        <div class="panel-visual">
+          <img
+            src="images/tech-circuits.jpg"
+            alt=""
+            width="1600"
+            height="1067"
+            loading="lazy"
+          />
+          <div class="panel-visual-frame"></div>
+        </div>
+        <div class="panel-copy">
+          <h2>From algorithms to airspace</h2>
+          <p>
+            Wyvern Systems delivers senior technical consulting at the intersection of
+            autonomy, software, and flight operations—whether you are maturing AI for
+            real vehicles, hardening product architecture, or planning a credible
+            flight-test campaign.
           </p>
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="#contact">Start a conversation</a>
-            <a class="btn btn-ghost" href="#work">What we do</a>
+        </div>
+      </section>
+
+      <section class="panel panel-dark">
+        <div class="panel-inner">
+          <h2>Principal</h2>
+          <div class="principal-card">
+            <div class="principal-text">
+              <p class="principal-name">Ron Picard</p>
+              <p class="principal-role">
+                Autonomy · software · flight test · engineering leadership
+              </p>
+              <p>
+                Ron is a <strong>Product Architect at Applied Intuition</strong> and the
+                founder behind Wyvern Systems. Previously he held director-level roles at
+                EpiSci (now part of Applied Intuition) across
+                <strong>aircraft autonomy</strong>, <strong>product</strong>, and
+                <strong>autonomy engineering</strong>—including hiring, capture, and
+                delivery of tactical autonomy software demonstrated on UAS swarms and
+                crewed platforms.
+              </p>
+              <p>
+                Earlier, as <strong>Experimentation Lead</strong> with the U.S. Air Force,
+                he commissioned and led joint DoD efforts integrating
+                <strong>AI agents on the X-62A VISTA</strong>, group 4/5 UAS experimentation,
+                and large-force flight test—briefing results to senior DoD leadership and
+                helping shape how the flight-test enterprise evaluates autonomy.
+              </p>
+              <p>
+                His background also includes hands-on <strong>software engineering</strong>
+                (ML, radar tooling, agile delivery), <strong>materials / mechanical
+                engineering</strong>, and extensive writing and teaching on AI, software,
+                and aviation—see <a href="https://ronpicard.com">ronpicard.com</a> for
+                projects and articles.
+              </p>
+            </div>
+            <div class="principal-aside">
+              <img
+                src="images/flight-line.jpg"
+                alt=""
+                width="1600"
+                height="1067"
+                loading="lazy"
+              />
+            </div>
           </div>
-          <ul class="hero-metrics" aria-label="Highlights">
-            <li>
-              <span class="hero-metric-value">Senior-led</span>
-              <span class="hero-metric-label">No bait-and-switch</span>
-            </li>
-            <li>
-              <span class="hero-metric-value">End-to-end</span>
-              <span class="hero-metric-label">From design to delivery</span>
-            </li>
-            <li>
-              <span class="hero-metric-value">Documentation</span>
-              <span class="hero-metric-label">You keep the map</span>
-            </li>
-          </ul>
         </div>
       </section>
 
-      <section id="work" class="section cards-section">
-        <div class="section-head">
-          <p class="section-eyebrow">Capabilities</p>
-          <h2 class="section-title">What we do</h2>
-          <p class="section-intro">
-            Practical engineering for teams that need momentum without cutting
-            corners.
+      <section class="panel panel-cta">
+        <div class="panel-inner cta-inner">
+          <h2>Engage Wyvern Systems</h2>
+          <p>
+            Strategy sessions, architecture reviews, autonomy &amp; flight-test planning,
+            and hands-on engineering support—scoped to what your program actually needs.
           </p>
-        </div>
-        <div class="cards">
-          <article class="card reveal">
-            <div class="card-icon" aria-hidden="true">
-              <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path
-                  d="M6 10h20M6 16h14M6 22h20"
-                  stroke="currentColor"
-                  stroke-width="1.75"
-                  stroke-linecap="round"
-                />
-                <circle cx="24" cy="16" r="3" stroke="currentColor" stroke-width="1.75" />
-              </svg>
-            </div>
-            <h3>Systems &amp; architecture</h3>
-            <p>
-              Design boundaries, APIs, and data flows that scale with your
-              product—not against it.
-            </p>
-          </article>
-          <article class="card reveal">
-            <div class="card-icon" aria-hidden="true">
-              <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path
-                  d="M10 22l6-12 6 12M13 18h6"
-                  stroke="currentColor"
-                  stroke-width="1.75"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M8 26h16"
-                  stroke="currentColor"
-                  stroke-width="1.75"
-                  stroke-linecap="round"
-                />
-              </svg>
-            </div>
-            <h3>Implementation</h3>
-            <p>
-              Hands-on delivery: prototypes, refactors, and production-grade
-              code paths you can own.
-            </p>
-          </article>
-          <article class="card reveal">
-            <div class="card-icon" aria-hidden="true">
-              <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="16" cy="11" r="4" stroke="currentColor" stroke-width="1.75" />
-                <path
-                  d="M8 26c0-4.4 3.6-8 8-8s8 3.6 8 8"
-                  stroke="currentColor"
-                  stroke-width="1.75"
-                  stroke-linecap="round"
-                />
-              </svg>
-            </div>
-            <h3>Technical leadership</h3>
-            <p>
-              Reviews, roadmaps, and pragmatic guidance so your team moves
-              faster with fewer surprises.
-            </p>
-          </article>
-        </div>
-      </section>
-
-      <section id="about" class="section about">
-        <div class="about-layout">
-          <div class="about-panel reveal">
-            <p class="section-eyebrow">Who we are</p>
-            <h2 class="section-title">About Wyvern Systems</h2>
-            <p class="about-copy">
-              We’re a small, senior-led practice focused on clarity and
-              durability. Whether you’re stabilizing a legacy stack or standing
-              up something new, we work alongside your team and leave things
-              better documented than we found them.
-            </p>
+          <div class="hero-cta">
+            <a class="btn btn-gold" href="mailto:hello@wyvernsystems.com">hello@wyvernsystems.com</a>
+            <a
+              class="btn btn-outline btn-on-dark"
+              href="https://www.linkedin.com/in/ron-picard-8b7b3059"
+              rel="noopener noreferrer"
+              target="_blank"
+              >Connect on LinkedIn</a
+            >
           </div>
-          <ul class="about-pillars reveal" aria-label="Principles">
-            <li>
-              <span class="pillar-num">01</span>
-              <span class="pillar-text">Clear tradeoffs, honest timelines</span>
-            </li>
-            <li>
-              <span class="pillar-num">02</span>
-              <span class="pillar-text">Code and docs you can run without us</span>
-            </li>
-            <li>
-              <span class="pillar-num">03</span>
-              <span class="pillar-text">Security and operability by default</span>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <section id="contact" class="section contact">
-        <div class="contact-panel reveal">
-          <p class="section-eyebrow section-eyebrow--center">Get in touch</p>
-          <h2 class="section-title">Contact</h2>
-          <p class="contact-lead">
-            Tell us what you’re building. We’ll respond within a few business
-            days.
-          </p>
-          <a class="btn btn-primary btn-large contact-mail" href="mailto:hello@wyvernsystems.com">
-            <span class="contact-mail-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path
-                  d="M4 6h16v12H4V6z"
-                  stroke="currentColor"
-                  stroke-width="1.75"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M4 7l8 6 8-6"
-                  stroke="currentColor"
-                  stroke-width="1.75"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </svg>
-            </span>
-            hello@wyvernsystems.com
-          </a>
         </div>
       </section>
     </main>
 
     <footer class="site-footer">
-      <div class="site-footer-inner">
-        <p class="footer-brand">Wyvern Systems, LLC</p>
-        <p class="footer-copy">
-          &copy; <span id="year"></span> All rights reserved.
-        </p>
-      </div>
+      <p class="footer-brand">&copy; <span id="year"></span> Wyvern Systems, LLC</p>
+      <p class="footer-credits">
+        Photography: stock images from
+        <a href="https://unsplash.com/license" rel="noopener noreferrer" target="_blank">Unsplash</a>
+        — <a href="images/ATTRIBUTION.txt">credits</a>
+      </p>
     </footer>
 
     <script>
       document.getElementById("year").textContent = new Date().getFullYear();
-
-      if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-        var reveals = document.querySelectorAll(".reveal");
-        var observer = new IntersectionObserver(
-          function (entries) {
-            entries.forEach(function (entry) {
-              if (entry.isIntersecting) {
-                entry.target.classList.add("reveal--visible");
-                observer.unobserve(entry.target);
-              }
-            });
-          },
-          { rootMargin: "0px 0px -8% 0px", threshold: 0.08 }
-        );
-        reveals.forEach(function (el) {
-          observer.observe(el);
-        });
-      } else {
-        document.querySelectorAll(".reveal").forEach(function (el) {
-          el.classList.add("reveal--visible");
-        });
-      }
     </script>
   </body>
 </html>
