@@ -21,26 +21,33 @@ export default function MatrixRain() {
     const fontSize = 16;
     let drops = [];
     let raf = 0;
+    let frame = 0;
 
     function layout() {
       dpr = Math.min(window.devicePixelRatio || 1, 2);
-      w = window.innerWidth;
-      h = window.innerHeight;
+      const vv = window.visualViewport;
+      const cw = canvas.clientWidth || vv?.width || window.innerWidth;
+      const ch = canvas.clientHeight || vv?.height || window.innerHeight;
+      w = Math.max(cw, window.innerWidth);
+      h = Math.max(ch, window.innerHeight, document.documentElement.clientHeight || 0);
       canvas.width = Math.floor(w * dpr);
       canvas.height = Math.floor(h * dpr);
-      canvas.style.width = `${w}px`;
-      canvas.style.height = `${h}px`;
+      canvas.style.width = "100%";
+      canvas.style.height = "100%";
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       const cols = Math.max(1, Math.ceil(w / fontSize));
       drops = new Array(cols).fill(0).map(() => Math.floor(Math.random() * -60));
     }
 
+    const visualViewport = window.visualViewport;
     layout();
     window.addEventListener("resize", layout);
+    visualViewport?.addEventListener("resize", layout);
 
     function tick() {
+      frame += 1;
       ctx.globalCompositeOperation = "source-over";
-      ctx.fillStyle = "rgba(0, 0, 0, 0.09)";
+      ctx.fillStyle = "rgba(0, 0, 0, 0.065)";
       ctx.fillRect(0, 0, w, h);
       ctx.font = `${fontSize}px "Share Tech Mono", "Courier New", Courier, monospace`;
 
@@ -55,10 +62,13 @@ export default function MatrixRain() {
         ctx.fillText(ch, x, y);
         ctx.shadowBlur = 0;
 
-        if (y > h && Math.random() > 0.975) {
-          drops[i] = 0;
-        } else {
-          drops[i] += 1;
+        /* Advance columns every 3rd frame for slower fall */
+        if (frame % 3 === 0) {
+          if (y > h && Math.random() > 0.975) {
+            drops[i] = 0;
+          } else {
+            drops[i] += 1;
+          }
         }
       }
 
@@ -70,6 +80,7 @@ export default function MatrixRain() {
     return () => {
       cancelAnimationFrame(raf);
       window.removeEventListener("resize", layout);
+      visualViewport?.removeEventListener("resize", layout);
     };
   }, []);
 
