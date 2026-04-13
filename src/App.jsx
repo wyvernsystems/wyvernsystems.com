@@ -14,21 +14,6 @@ const SPECTRUM = [
   "& more",
 ];
 
-function WyvernEmblem() {
-  return (
-    <div className="wyvern-emblem" aria-hidden="true">
-      <img
-        className="dragon-emblem-img"
-        src={`${import.meta.env.BASE_URL}images/wyvern-systems-logo-matrix.png`}
-        width={1024}
-        height={558}
-        decoding="async"
-        alt=""
-      />
-    </div>
-  );
-}
-
 export default function App() {
   const year = new Date().getFullYear();
 
@@ -46,7 +31,6 @@ export default function App() {
         </div>
 
         <div className="home-inner">
-          <WyvernEmblem />
           <p className="hero-llc">Wyvern Systems, LLC</p>
           <h1 className="hero-title">Wyvern Systems</h1>
           <p className="hero-byline">

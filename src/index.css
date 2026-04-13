@@ -220,23 +220,6 @@ a.btn {
   box-shadow: none;
 }
 
-.wyvern-emblem {
-  width: min(7.75rem, 72vw);
-  max-width: 100%;
-  margin: 0 auto 0.65rem;
-  filter: drop-shadow(0 0 22px var(--matrix-glow));
-}
-
-/* Matrix logo PNG; intrinsic 1024×558 (public/images/wyvern-systems-logo-matrix.png) */
-.dragon-emblem-img {
-  display: block;
-  width: 100%;
-  height: auto;
-  aspect-ratio: 1024 / 558;
-  object-fit: contain;
-  object-position: center bottom;
-}
-
 .hero-llc {
   margin: 0 0 0.25rem;
   font-family: var(--font-mono);
