@@ -36,7 +36,9 @@ export default function MatrixRain() {
       canvas.style.height = "100%";
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       const cols = Math.max(1, Math.ceil(w / fontSize));
-      drops = new Array(cols).fill(0).map(() => Math.floor(Math.random() * -60));
+      const rows = Math.max(12, Math.ceil(h / fontSize) + 4);
+      /* Start mid-stream so the screen reads as already raining, not empty-then-fall */
+      drops = new Array(cols).fill(0).map(() => Math.random() * rows);
     }
 
     const visualViewport = window.visualViewport;
@@ -65,7 +67,7 @@ export default function MatrixRain() {
         /* Advance columns every 3rd frame for slower fall */
         if (frame % 3 === 0) {
           if (y > h && Math.random() > 0.975) {
-            drops[i] = 0;
+            drops[i] = -Math.random() * Math.ceil(h / fontSize) * 0.35;
           } else {
             drops[i] += 1;
           }
