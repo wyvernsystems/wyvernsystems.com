@@ -1,4 +1,3 @@
-import { useId } from "react";
 import MatrixRain from "./components/MatrixRain.jsx";
 import WyvernBackdrop from "./components/WyvernBackdrop.jsx";
 
@@ -16,48 +15,9 @@ const SPECTRUM = [
 ];
 
 function WyvernEmblem() {
-  const gid = useId().replace(/:/g, "");
   return (
     <div className="wyvern-emblem" aria-hidden="true">
-      <svg viewBox="0 0 200 220" fill="none" xmlns="http://www.w3.org/2000/svg" className="wyvern-svg">
-        <defs>
-          <linearGradient id={`${gid}-mx`} x1="50%" y1="100%" x2="50%" y2="0%">
-            <stop offset="0%" stopColor="#003311" />
-            <stop offset="40%" stopColor="#008822" />
-            <stop offset="100%" stopColor="#66ff99" />
-          </linearGradient>
-          <filter id={`${gid}-glow`} x="-40%" y="-40%" width="180%" height="180%">
-            <feGaussianBlur stdDeviation="4" result="b" />
-            <feMerge>
-              <feMergeNode in="b" />
-              <feMergeNode in="SourceGraphic" />
-            </feMerge>
-          </filter>
-        </defs>
-        <g filter={`url(#${gid}-glow)`} className="wyvern-wings">
-          <path
-            d="M100 28 L32 188h36l32-88 32 88h36L100 28z"
-            stroke={`url(#${gid}-mx)`}
-            strokeWidth="2.5"
-            strokeLinejoin="round"
-            className="wyvern-body-stroke"
-          />
-          <path
-            d="M100 78v72M62 128h76"
-            stroke="#88ffaa"
-            strokeWidth="2.2"
-            strokeLinecap="round"
-            opacity="0.95"
-          />
-          <path
-            d="M48 96 Q12 72 4 36M152 96 Q188 72 196 36"
-            stroke="#00ff55"
-            strokeWidth="2"
-            strokeLinecap="round"
-            opacity="0.55"
-          />
-        </g>
-      </svg>
+      <div className="dragon-emblem" />
     </div>
   );
 }
@@ -91,9 +51,6 @@ export default function App() {
 
           <div className="offers-grid">
             <article className="offer-card">
-              <span className="offer-icon" aria-hidden="true">
-                ▲
-              </span>
               <h2>
                 Technical
                 <br />
@@ -101,9 +58,6 @@ export default function App() {
               </h2>
             </article>
             <article className="offer-card">
-              <span className="offer-icon" aria-hidden="true">
-                ◆
-              </span>
               <h2>
                 Educational
                 <br />
@@ -128,7 +82,7 @@ export default function App() {
             >
               Message me on LinkedIn
             </a>
-            <a className="btn btn-ghost" href={RON_SITE} rel="noopener noreferrer" target="_blank">
+            <a className="btn btn-ember" href={RON_SITE} rel="noopener noreferrer" target="_blank">
               ronpicard.com
             </a>
           </div>

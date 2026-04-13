@@ -45,6 +45,8 @@ export default function MatrixRain() {
     layout();
     window.addEventListener("resize", layout);
     visualViewport?.addEventListener("resize", layout);
+    /* iOS Safari: URL bar show/hide changes layout without a window resize */
+    visualViewport?.addEventListener("scroll", layout, { passive: true });
 
     function tick() {
       frame += 1;
@@ -83,6 +85,7 @@ export default function MatrixRain() {
       cancelAnimationFrame(raf);
       window.removeEventListener("resize", layout);
       visualViewport?.removeEventListener("resize", layout);
+      visualViewport?.removeEventListener("scroll", layout);
     };
   }, []);
 

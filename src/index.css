@@ -25,17 +25,23 @@ html {
   scroll-behavior: smooth;
   min-height: 100%;
   min-height: 100dvh;
+  overflow-x: clip;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  color-scheme: dark;
 }
 
 body {
   margin: 0;
   min-height: 100%;
   min-height: 100dvh;
+  overflow-x: clip;
   font-family: var(--font-sans);
   font-size: 1rem;
   line-height: 1.55;
   color: var(--text);
   background: var(--bg);
+  -webkit-overflow-scrolling: touch;
 }
 
 ::selection {
@@ -75,7 +81,7 @@ a.btn {
 .wyvern-backdrop-svg {
   width: min(140vmin, 900px);
   height: auto;
-  max-height: 100vh;
+  max-height: 100dvh;
   opacity: 0.95;
   filter: drop-shadow(0 0 80px rgba(0, 80, 30, 0.35));
 }
@@ -130,6 +136,7 @@ a.btn {
   width: 100%;
   height: 100%;
   min-height: 100dvh;
+  min-height: 100svh;
   z-index: 3;
   pointer-events: none;
   opacity: 1;
@@ -146,12 +153,17 @@ a.btn {
   z-index: 4;
   min-height: 100%;
   min-height: 100dvh;
+  min-height: 100svh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 2rem 1.15rem 2.25rem;
-  overflow: hidden;
+  padding-top: max(2rem, calc(env(safe-area-inset-top, 0px) + 1rem));
+  padding-bottom: max(2.25rem, calc(env(safe-area-inset-bottom, 0px) + 1rem));
+  padding-left: max(1.15rem, env(safe-area-inset-left, 0px));
+  padding-right: max(1.15rem, env(safe-area-inset-right, 0px));
+  overflow-x: clip;
+  overflow-y: visible;
 }
 
 /* Intentionally light — full-bleed opaque layers were hiding the fixed matrix canvas */
@@ -197,15 +209,15 @@ a.btn {
   position: relative;
   z-index: 2;
   width: 100%;
-  max-width: var(--max);
+  max-width: min(var(--max), 100%);
   text-align: center;
-  padding: 1.25rem 1.35rem 1.5rem;
+  padding: 1.25rem clamp(0.85rem, 4vw, 1.35rem) 1.5rem;
   border-radius: 14px;
-  background: rgba(0, 8, 2, 0.58);
-  border: 1px solid rgba(0, 255, 65, 0.12);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  box-shadow: 0 0 40px rgba(0, 0, 0, 0.45);
+  background: transparent;
+  border: 1px solid rgba(0, 255, 65, 0.14);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: none;
 }
 
 .wyvern-emblem {
@@ -214,39 +226,19 @@ a.btn {
   filter: drop-shadow(0 0 18px var(--matrix-glow));
 }
 
-.wyvern-svg {
-  display: block;
+/* Dragon mark: PNG mask + matrix green gradient */
+.dragon-emblem {
   width: 100%;
-  height: auto;
-}
-
-.wyvern-wings {
-  transform-origin: 50% 85%;
-  animation: wyvern-breathe 4.2s ease-in-out infinite;
-}
-
-@keyframes wyvern-breathe {
-  0%,
-  100% {
-    transform: translateY(0) scale(1);
-  }
-  50% {
-    transform: translateY(-2px) scale(1.045);
-  }
-}
-
-.wyvern-body-stroke {
-  animation: stroke-flicker 3.5s ease-in-out infinite;
-}
-
-@keyframes stroke-flicker {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.88;
-  }
+  aspect-ratio: 1;
+  background: linear-gradient(155deg, #66ff99 0%, var(--matrix) 42%, #008822 62%, #003311 100%);
+  mask-image: url("/dragon-icon.png");
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  -webkit-mask-image: url("/dragon-icon.png");
+  -webkit-mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
 }
 
 .hero-llc {
@@ -257,6 +249,7 @@ a.btn {
   text-transform: uppercase;
   letter-spacing: 0.28em;
   color: var(--matrix-dim);
+  text-shadow: 0 0 14px rgba(0, 0, 0, 0.9);
 }
 
 .hero-title {
@@ -279,7 +272,8 @@ a.btn {
   background-clip: text;
   color: transparent;
   animation: title-shine 8s ease-in-out infinite;
-  filter: drop-shadow(0 0 24px rgba(0, 255, 65, 0.35));
+  filter: drop-shadow(0 0 20px rgba(0, 0, 0, 0.8)) drop-shadow(0 2px 4px rgba(0, 0, 0, 0.65))
+    drop-shadow(0 0 24px rgba(0, 255, 65, 0.35));
 }
 
 @keyframes title-shine {
@@ -296,6 +290,7 @@ a.btn {
   margin: 0 0 0.65rem;
   font-size: 0.88rem;
   color: var(--muted);
+  text-shadow: 0 0 16px rgba(0, 0, 0, 0.9), 0 1px 2px rgba(0, 0, 0, 0.85);
 }
 
 .hero-name {
@@ -310,8 +305,9 @@ a.btn {
   max-width: 32rem;
   font-size: 0.95rem;
   font-weight: 400;
-  color: rgba(216, 245, 223, 0.9);
+  color: rgba(216, 245, 223, 0.95);
   line-height: 1.58;
+  text-shadow: 0 0 20px rgba(0, 0, 0, 0.85), 0 1px 2px rgba(0, 0, 0, 0.9);
 }
 
 .hero-lead strong {
@@ -327,6 +323,7 @@ a.btn {
   letter-spacing: 0.24em;
   text-transform: uppercase;
   color: var(--matrix-dim);
+  text-shadow: 0 0 12px rgba(0, 0, 0, 0.9);
 }
 
 .pill-row {
@@ -337,7 +334,8 @@ a.btn {
   flex-wrap: wrap;
   justify-content: center;
   gap: 0.3rem 0.35rem;
-  max-width: 34rem;
+  max-width: 100%;
+  width: 100%;
 }
 
 .pill-row li {
@@ -346,13 +344,15 @@ a.btn {
   font-weight: 400;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: rgba(180, 255, 196, 0.85);
+  color: rgba(180, 255, 196, 0.92);
   border: 1px solid var(--border);
   padding: 0.28rem 0.55rem;
   border-radius: 2px;
-  background: rgba(0, 12, 4, 0.65);
-  backdrop-filter: blur(6px);
-  box-shadow: 0 0 12px rgba(0, 40, 15, 0.35);
+  background: transparent;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  box-shadow: none;
+  text-shadow: 0 0 12px rgba(0, 0, 0, 0.85);
   animation: pill-in 0.5s ease backwards;
 }
 
@@ -395,9 +395,13 @@ a.btn {
 .home-cta {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.45rem;
+  gap: 0.55rem;
   justify-content: center;
   margin-bottom: 0.35rem;
+  width: 100%;
+  max-width: 22rem;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .home-copy {
@@ -406,20 +410,23 @@ a.btn {
   font-family: var(--font-mono);
   letter-spacing: 0.06em;
   color: var(--muted);
+  text-shadow: 0 0 14px rgba(0, 0, 0, 0.9);
 }
 
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.58rem 1.1rem;
+  padding: 0.65rem 1.15rem;
+  min-height: 44px;
   border-radius: 3px;
   font-family: var(--font-mono);
-  font-size: 0.68rem;
+  font-size: clamp(0.62rem, 2.8vw, 0.68rem);
   font-weight: 400;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   text-decoration: none;
+  touch-action: manipulation;
   transition:
     transform 0.18s ease,
     box-shadow 0.22s ease,
@@ -439,22 +446,30 @@ a.btn {
   box-shadow: 0 0 24px var(--matrix-glow);
 }
 
-.btn-ember:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 0 32px rgba(0, 255, 65, 0.55);
-  color: #000;
+@media (hover: hover) and (pointer: fine) {
+  .btn-ember:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 32px rgba(0, 255, 65, 0.55);
+    color: #000;
+  }
 }
 
-.btn-ghost {
-  border: 1px solid var(--border);
-  color: var(--matrix-bright);
-  background: rgba(0, 0, 0, 0.45);
+.btn-ember:active {
+  transform: scale(0.98);
+  box-shadow: 0 0 18px rgba(0, 255, 65, 0.45);
 }
 
-.btn-ghost:hover {
-  border-color: var(--matrix);
-  color: #fff;
-  box-shadow: 0 0 14px rgba(0, 255, 65, 0.2);
+@media (max-width: 520px) {
+  .home-cta {
+    flex-direction: column;
+    align-items: stretch;
+    max-width: 100%;
+  }
+
+  .home-cta .btn {
+    width: 100%;
+    max-width: 100%;
+  }
 }
 
 .offers-grid {
@@ -475,9 +490,9 @@ a.btn {
   padding: 1rem 0.95rem;
   border-radius: 6px;
   border: 1px solid var(--border);
-  background: rgba(0, 10, 4, 0.55);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: transparent;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
 }
 
 .offer-card::before {
@@ -495,32 +510,17 @@ a.btn {
   opacity: 0.65;
 }
 
-.offer-icon {
-  display: block;
-  font-size: 0.85rem;
-  color: var(--matrix);
-  margin-bottom: 0.35rem;
-  animation: icon-pulse 2.8s ease-in-out infinite;
-}
-
-@keyframes icon-pulse {
-  0%,
-  100% {
-    opacity: 0.75;
-  }
-  50% {
-    opacity: 1;
-  }
-}
-
 .offer-card h2 {
   margin: 0;
   font-family: var(--font-display);
-  font-size: 1.02rem;
+  font-size: clamp(0.95rem, 3.5vw, 1.02rem);
   font-weight: 600;
   letter-spacing: 0.05em;
   line-height: 1.2;
   color: var(--matrix-bright);
+  text-shadow: 0 0 16px rgba(0, 0, 0, 0.88), 0 1px 2px rgba(0, 0, 0, 0.85);
+  overflow-wrap: anywhere;
+  hyphens: auto;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -540,11 +540,8 @@ a.btn {
     color: transparent;
   }
 
-  .wyvern-wings,
-  .wyvern-body-stroke,
   .wyvern-backdrop-pulse,
   .home-matrix-scan,
-  .offer-icon,
   .pill-row li {
     animation: none !important;
   }
