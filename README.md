@@ -1,25 +1,32 @@
 # wyvernsystems.com
 
-Static marketing site for **Wyvern Systems, LLC**, published with [GitHub Pages](https://pages.github.com/) and [GitHub Actions](https://github.com/features/actions).
+Marketing site for **Wyvern Systems, LLC** — a **React** app built with [Vite](https://vitejs.dev/), deployed to [GitHub Pages](https://pages.github.com/) via [GitHub Actions](https://github.com/features/actions).
 
 ## Contents
 
-- **`public/`** — Site root served by Pages (`index.html`, `styles.css`, `CNAME`, `images/`).
-- **`public/images/`** — Hero and section photos (Unsplash; see `public/images/ATTRIBUTION.txt`).
+- **`src/`** — `App.jsx`, entrypoint, and global styles (`index.css`).
+- **`public/`** — Static assets copied to the build root: **`CNAME`**, **`images/`** (Unsplash photos + `ATTRIBUTION.txt`).
 
-## Local preview
-
-From the repo root, serve `public/` with any static file server, for example:
+## Develop
 
 ```bash
-cd public && python3 -m http.server 8080
+npm install
+npm run dev
 ```
 
-Then open `http://localhost:8080`.
+Open the URL Vite prints (usually `http://localhost:5173`).
+
+## Build (production)
+
+```bash
+npm run build
+```
+
+Output is **`dist/`**, which is what the deploy workflow uploads.
 
 ## Deploy
 
-Pushes to **`main`** run `.github/workflows/deploy-pages.yml`, which uploads `public/` and deploys to GitHub Pages. Configure the custom domain under the repository **Settings → Pages** if needed.
+Pushes to **`main`** run `.github/workflows/deploy-pages.yml`: `npm ci`, `npm run build`, then publish **`dist/`** to GitHub Pages. Set the custom domain under the repository **Settings → Pages** if needed.
 
 ## License
 
