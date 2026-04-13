@@ -17,7 +17,14 @@ const SPECTRUM = [
 function WyvernEmblem() {
   return (
     <div className="wyvern-emblem" aria-hidden="true">
-      <div className="dragon-emblem" />
+      <img
+        className="dragon-emblem-img"
+        src={`${import.meta.env.BASE_URL}dragon-icon.png`}
+        width={1024}
+        height={558}
+        decoding="async"
+        alt=""
+      />
     </div>
   );
 }

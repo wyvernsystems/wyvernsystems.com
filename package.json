@@ -6,7 +6,10 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "fill-dragon-holes": "node scripts/fill-dragon-holes.mjs",
+    "remove-dragon-rock": "node scripts/remove-dragon-rock.mjs",
+    "build-dragon-icon": "node scripts/build-dragon-icon.mjs"
   },
   "dependencies": {
     "react": "^19.1.0",
@@ -14,6 +17,7 @@
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^4.4.1",
+    "sharp": "^0.34.5",
     "vite": "^6.2.5"
   }
 }

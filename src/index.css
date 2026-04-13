@@ -221,24 +221,20 @@ a.btn {
 }
 
 .wyvern-emblem {
-  width: min(4.25rem, 15vw);
-  margin: 0 auto 0.5rem;
-  filter: drop-shadow(0 0 18px var(--matrix-glow));
+  width: min(7.75rem, 72vw);
+  max-width: 100%;
+  margin: 0 auto 0.65rem;
+  filter: drop-shadow(0 0 22px var(--matrix-glow));
 }
 
-/* Dragon mark: PNG mask + matrix green gradient */
-.dragon-emblem {
+/* Colored dragon PNG (transparent outside + leg gap); intrinsic 1024×558 */
+.dragon-emblem-img {
+  display: block;
   width: 100%;
-  aspect-ratio: 1;
-  background: linear-gradient(155deg, #66ff99 0%, var(--matrix) 42%, #008822 62%, #003311 100%);
-  mask-image: url("/dragon-icon.png");
-  mask-size: contain;
-  mask-repeat: no-repeat;
-  mask-position: center;
-  -webkit-mask-image: url("/dragon-icon.png");
-  -webkit-mask-size: contain;
-  -webkit-mask-repeat: no-repeat;
-  -webkit-mask-position: center;
+  height: auto;
+  aspect-ratio: 1024 / 558;
+  object-fit: contain;
+  object-position: center bottom;
 }
 
 .hero-llc {
