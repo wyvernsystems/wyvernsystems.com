@@ -1,8 +1,7 @@
 /**
- * Reads public/dragon-original.png and writes:
- * - dragon-icon.png — Matrix-style green (dark forest → #00FF41), transparent outer white
- * - dragon-original.svg, dragon-matrix.svg — raster-in-SVG wrappers (full resolution)
- * - dragon-original-600.png, dragon-matrix-600.png — 600×600, centered, transparent pad
+ * Reads public/wyvern-systems-logo-original.png and writes:
+ * - wyvern-systems-logo-matrix.png — Matrix-style green, transparent outer white
+ * - Full-size SVG wrappers + square PNG/SVG at 600×600 and 128×128 (letterboxed, transparent pad)
  */
 import sharp from "sharp";
 import { readFileSync, writeFileSync } from "node:fs";
@@ -12,9 +11,9 @@ import { fileURLToPath } from "node:url";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = join(__dirname, "..");
 const pub = join(root, "public");
-const original = join(pub, "dragon-original.png");
-const outMatrix = join(pub, "dragon-icon.png");
-const SIZE = 600;
+const original = join(pub, "wyvern-systems-logo-original.png");
+const outMatrix = join(pub, "wyvern-systems-logo-matrix.png");
+const SQUARE_SIZES = [600, 128];
 
 function lerp(a, b, t) {
   return a + (b - a) * t;
@@ -32,21 +31,20 @@ function writeRasterSvg(outPath, href, title, w, h) {
   writeFileSync(outPath, svg, "utf8");
 }
 
-async function pngToSquare600(srcPath, outPath) {
-  const resized = await sharp(srcPath).resize(SIZE, SIZE, { fit: "inside" }).png().toBuffer();
-  const { width: rw, height: rh } = await sharp(resized).metadata();
-  const left = Math.floor((SIZE - rw) / 2);
-  const top = Math.floor((SIZE - rh) / 2);
-  await sharp({
-    create: {
-      width: SIZE,
-      height: SIZE,
-      channels: 4,
+/**
+ * Exact N×N PNG: aspect preserved, transparent letterboxing (Sharp “contain” + background).
+ * Replaces older inside+composite, which did not expand the canvas to a square.
+ */
+async function pngToSquarePng(srcPath, outPath, size) {
+  await sharp(srcPath)
+    .ensureAlpha()
+    .resize(size, size, {
+      fit: "contain",
+      position: "centre",
+      kernel: sharp.kernel.lanczos3,
       background: { r: 0, g: 0, b: 0, alpha: 0 },
-    },
-  })
-    .composite([{ input: resized, left, top }])
-    .png()
+    })
+    .png({ compressionLevel: 9 })
     .toFile(outPath);
 }
 
@@ -111,7 +109,6 @@ const stops = [
   { r: 0x00, g: 0xe4, b: 0x48 },
   { r: 0x00, g: 0xff, b: 0x41 },
 ];
-/* <1 lifts shadow tones so blacks map into the green ramp, not ink */
 const uGamma = 0.88;
 
 function sampleRamp(u01) {
@@ -151,34 +148,47 @@ for (let p = 0; p < n; p++) {
 
 await sharp(data, { raw: { width: w, height: h, channels: 4 } }).png().toFile(outMatrix);
 
-writeRasterSvg(join(pub, "dragon.svg"), "dragon-original.png", "Dragon (original raster)", w, h);
-writeRasterSvg(join(pub, "dragon-original.svg"), "dragon-original.png", "Dragon (original raster)", w, h);
-writeRasterSvg(join(pub, "dragon-matrix.svg"), "dragon-icon.png", "Dragon (Matrix green raster)", w, h);
-
-const outOrig600 = join(pub, "dragon-original-600.png");
-const outMatrix600 = join(pub, "dragon-matrix-600.png");
-await pngToSquare600(original, outOrig600);
-await pngToSquare600(outMatrix, outMatrix600);
-
 writeRasterSvg(
-  join(pub, "dragon-original-600.svg"),
-  "dragon-original-600.png",
-  "Dragon original (600×600)",
-  SIZE,
-  SIZE,
-);
-writeRasterSvg(
-  join(pub, "dragon-matrix-600.svg"),
-  "dragon-matrix-600.png",
-  "Dragon Matrix green (600×600)",
-  SIZE,
-  SIZE,
-);
-
-console.log(
-  "wrote dragon-icon.png, dragon.svg, dragon-original.svg, dragon-matrix.svg,",
-  "dragon-original-600.png, dragon-matrix-600.png, dragon-original-600.svg, dragon-matrix-600.svg;",
+  join(pub, "wyvern-systems-logo.svg"),
+  "wyvern-systems-logo-original.png",
+  "Wyvern Systems logo (original raster)",
   w,
-  "x",
   h,
 );
+writeRasterSvg(
+  join(pub, "wyvern-systems-logo-original.svg"),
+  "wyvern-systems-logo-original.png",
+  "Wyvern Systems logo (original raster)",
+  w,
+  h,
+);
+writeRasterSvg(
+  join(pub, "wyvern-systems-logo-matrix.svg"),
+  "wyvern-systems-logo-matrix.png",
+  "Wyvern Systems logo (Matrix green raster)",
+  w,
+  h,
+);
+
+for (const sq of SQUARE_SIZES) {
+  const outOrigSq = join(pub, `wyvern-systems-logo-original-${sq}.png`);
+  const outMatrixSq = join(pub, `wyvern-systems-logo-matrix-${sq}.png`);
+  await pngToSquarePng(original, outOrigSq, sq);
+  await pngToSquarePng(outMatrix, outMatrixSq, sq);
+  writeRasterSvg(
+    join(pub, `wyvern-systems-logo-original-${sq}.svg`),
+    `wyvern-systems-logo-original-${sq}.png`,
+    `Wyvern Systems logo original (${sq}×${sq})`,
+    sq,
+    sq,
+  );
+  writeRasterSvg(
+    join(pub, `wyvern-systems-logo-matrix-${sq}.svg`),
+    `wyvern-systems-logo-matrix-${sq}.png`,
+    `Wyvern Systems logo Matrix green (${sq}×${sq})`,
+    sq,
+    sq,
+  );
+}
+
+console.log("wrote wyvern-systems-logo-*.png/svg;", w, "x", h, "+ squares", SQUARE_SIZES.join(", "));
