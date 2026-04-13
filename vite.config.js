@@ -21,8 +21,8 @@ function productionSecurityMeta() {
         "upgrade-insecure-requests",
       ].join("; ");
       return html.replace(
-        "<head>",
-        `<head>\n    <meta http-equiv="Content-Security-Policy" content="${csp}" />`,
+        "<!-- vite:csp -->",
+        `<meta http-equiv="Content-Security-Policy" content="${csp}" />`,
       );
     },
   };
