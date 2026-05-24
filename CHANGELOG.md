@@ -24,6 +24,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Homepage order: consulting, then What I cover / CTAs, then free products; removed product card image placeholders and marketplace lead line.
+- UI pass: section headings, consulting blurbs, Marketplace icons, stronger content panel scrim, CTA hierarchy (primary LinkedIn / ghost portfolio), product accent borders, footer at bottom after free products.
+- Responsive scaling: fluid type/spacing, viewport-based gutters and content max-width, scroll-friendly layout on small and tall screens.
+- Visual polish: consulting tile icons and accents, sticky section nav, terminal-style footer panel, typewriter hero lead, pill hovers, wyvern scroll parallax (respects reduced motion).
 - Vitest unit tests for CSP helpers, `App`, `MatrixRain`, `WyvernBackdrop`, and `useReveal`.
 - `npm test` and `npm run test:watch` scripts; CI runs tests before deploy.
 

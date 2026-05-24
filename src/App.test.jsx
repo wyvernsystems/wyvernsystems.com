@@ -10,6 +10,8 @@ describe("App", () => {
     expect(screen.getByText("Wyvern Systems, LLC")).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: /technical/i })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: /educational/i })).toBeInTheDocument();
+    expect(screen.getByText(/Systems, AI, hardware/i)).toBeInTheDocument();
+    expect(screen.getByText(/Lessons, workshops/i)).toBeInTheDocument();
     expect(screen.getByText("AI")).toBeInTheDocument();
     expect(screen.getByText("& more")).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "Auto Color" })).toBeInTheDocument();
@@ -55,7 +57,34 @@ describe("App", () => {
 
   it("shows current year in copyright when rendered", () => {
     const { container } = render(<App />);
-    const copy = container.querySelector(".home-copy");
+    const copy = container.querySelector(".site-footer .home-copy");
     expect(copy).toHaveTextContent(`© ${new Date().getFullYear()} Wyvern Systems, LLC`);
   });
+
+  it("places free products before the footer block when rendered", () => {
+    const { container } = render(<App />);
+    const inner = container.querySelector(".home-inner");
+    const children = [...inner.children].map((el) => el.className);
+    const productsIdx = children.findIndex((c) => typeof c === "string" && c.includes("free-products"));
+    const footerIdx = children.findIndex((c) => typeof c === "string" && c.includes("site-footer"));
+    expect(productsIdx).toBeGreaterThan(-1);
+    expect(footerIdx).toBeGreaterThan(productsIdx);
+  });
+
+  it("styles ronpicard link as secondary ghost button when rendered", () => {
+    render(<App />);
+    expect(screen.getByRole("link", { name: /ronpicard/i })).toHaveClass("btn-ghost");
+  });
+
+  it("renders section jump links when mounted", () => {
+    render(<App />);
+    const nav = screen.getByRole("navigation", { name: "Page sections" });
+    expect(within(nav).getByRole("link", { name: "Consulting" })).toHaveAttribute(
+      "href",
+      "#consulting",
+    );
+    expect(within(nav).getByRole("link", { name: "Products" })).toHaveAttribute("href", "#products");
+    expect(within(nav).getByRole("link", { name: "Contact" })).toHaveAttribute("href", "#contact");
+  });
+
 });

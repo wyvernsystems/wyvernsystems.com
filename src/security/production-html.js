@@ -11,7 +11,7 @@ export function buildContentSecurityPolicy() {
     "style-src 'self'",
     "style-src-attr 'unsafe-inline'",
     "font-src 'self' data:",
-    "img-src 'self' data:",
+    "img-src 'self' data: https://WyvernSystemsLLC.gallerycdn.vsassets.io",
     "connect-src 'self'",
     "media-src 'none'",
     "worker-src 'none'",

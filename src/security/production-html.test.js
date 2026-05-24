@@ -12,6 +12,7 @@ describe("buildContentSecurityPolicy", () => {
     expect(csp).toContain("script-src 'self'");
     expect(csp).toContain("style-src 'self'");
     expect(csp).toContain("font-src 'self' data:");
+    expect(csp).toContain("https://WyvernSystemsLLC.gallerycdn.vsassets.io");
     expect(csp).not.toContain("fonts.googleapis.com");
     expect(csp).toContain("frame-ancestors 'none'");
     expect(csp).toContain("upgrade-insecure-requests");

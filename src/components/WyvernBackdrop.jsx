@@ -1,12 +1,36 @@
-import { useId } from "react";
+import { useEffect, useId, useRef } from "react";
 
 const SILHOUETTE = "M200 48 L48 392h88l64-200 64 200h88L200 48z";
 
 export default function WyvernBackdrop() {
   const uid = useId().replace(/:/g, "");
+  const rootRef = useRef(null);
+
+  useEffect(() => {
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const root = rootRef.current;
+    if (reduced || !root) return;
+
+    let raf = 0;
+    const onScroll = () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => {
+        const y = window.scrollY * 0.14;
+        root.style.transform = `translate3d(0, ${y}px, 0)`;
+      });
+    };
+
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener("scroll", onScroll);
+      if (root) root.style.transform = "";
+    };
+  }, []);
 
   return (
-    <div className="wyvern-backdrop" aria-hidden="true">
+    <div ref={rootRef} className="wyvern-backdrop" aria-hidden="true">
       <svg
         className="wyvern-backdrop-svg"
         viewBox="0 0 400 440"
