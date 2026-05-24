@@ -119,7 +119,7 @@ async function main() {
         fill="#a8d4b0">Ron Picard</text>
   <text x="${W / 2}" y="${leadY}" text-anchor="middle"
         font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="17" font-weight="400"
-        fill="rgba(216,245,223,0.96)">Solving your hard technical problems and delivering real results.</text>
+        fill="rgba(216,245,223,0.96)">Solving your hardest technical problems and delivering real results.</text>
   <rect x="${boxLeftX}" y="${boxY}" width="${boxW}" height="${boxH}" rx="2" fill="none" stroke="#00ff41" stroke-opacity="0.75" stroke-width="1.5"/>
   <rect x="${boxLeftX + boxW + boxGap}" y="${boxY}" width="${boxW}" height="${boxH}" rx="2" fill="none" stroke="#00ff41" stroke-opacity="0.75" stroke-width="1.5"/>
   <text x="${boxLeftX + boxW / 2}" y="${boxY + 22}" text-anchor="middle"

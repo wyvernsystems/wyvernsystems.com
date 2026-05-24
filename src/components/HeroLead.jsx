@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const FULL_TEXT = "Solving your hard technical problems and delivering real results.";
+const FULL_TEXT = "Solving your hardest technical problems and delivering real results.";
 
 function prefersReducedMotion() {
   if (typeof window === "undefined") return false;

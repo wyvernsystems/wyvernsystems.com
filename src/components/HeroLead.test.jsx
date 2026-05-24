@@ -19,6 +19,6 @@ describe("HeroLead", () => {
     }));
 
     render(<HeroLead />);
-    expect(screen.getByText(/Solving your hard technical problems/i)).toBeInTheDocument();
+    expect(screen.getByText(/Solving your hardest technical problems/i)).toBeInTheDocument();
   });
 });
