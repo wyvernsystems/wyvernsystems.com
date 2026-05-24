@@ -19,6 +19,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - [CHANGELOG.md](CHANGELOG.md) for release notes.
+- **Free products** section for [Auto Color](https://marketplace.visualstudio.com/items?itemName=WyvernSystemsLLC.auto-color) and [AI Rulebook](https://marketplace.visualstudio.com/items?itemName=WyvernSystemsLLC.ai-rulebook) VS Code extensions.
+
+### Changed
+
+- Homepage order: consulting, then What I cover / CTAs, then free products; removed product card image placeholders and marketplace lead line.
 - Vitest unit tests for CSP helpers, `App`, `MatrixRain`, `WyvernBackdrop`, and `useReveal`.
 - `npm test` and `npm run test:watch` scripts; CI runs tests before deploy.
 

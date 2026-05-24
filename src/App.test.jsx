@@ -12,6 +12,24 @@ describe("App", () => {
     expect(screen.getByRole("heading", { name: /educational/i })).toBeInTheDocument();
     expect(screen.getByText("AI")).toBeInTheDocument();
     expect(screen.getByText("& more")).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Auto Color" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "AI Rulebook" })).toBeInTheDocument();
+  });
+
+  it("links free products to the Visual Studio Marketplace when rendered", () => {
+    render(<App />);
+
+    const marketplaceLinks = screen.getAllByRole("link", { name: "Marketplace" });
+    const hrefs = marketplaceLinks.map((a) => a.getAttribute("href"));
+    expect(hrefs).toContain(
+      "https://marketplace.visualstudio.com/items?itemName=WyvernSystemsLLC.auto-color",
+    );
+    expect(hrefs).toContain(
+      "https://marketplace.visualstudio.com/items?itemName=WyvernSystemsLLC.ai-rulebook",
+    );
+    for (const link of marketplaceLinks) {
+      expect(link).toHaveAttribute("rel", "noopener noreferrer");
+    }
   });
 
   it("uses noopener noreferrer on external links when rendered", () => {

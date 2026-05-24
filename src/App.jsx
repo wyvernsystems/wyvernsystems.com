@@ -1,5 +1,7 @@
+import FreeProductCard from "./components/FreeProductCard.jsx";
 import MatrixRain from "./components/MatrixRain.jsx";
 import WyvernBackdrop from "./components/WyvernBackdrop.jsx";
+import { FREE_PRODUCTS } from "./data/freeProducts.js";
 
 const RON_SITE = "https://ronpicard.com";
 
@@ -79,6 +81,19 @@ export default function App() {
           </div>
 
           <p className="home-copy">&copy; {year} Wyvern Systems, LLC</p>
+
+          <section className="free-products" aria-labelledby="free-products-heading">
+            <p className="spectrum-label" id="free-products-heading">
+              Free products
+            </p>
+            <ul className="free-products-list" role="list">
+              {FREE_PRODUCTS.map((product) => (
+                <li key={product.id} className="free-products-list__item">
+                  <FreeProductCard product={product} />
+                </li>
+              ))}
+            </ul>
+          </section>
         </div>
       </section>
     </>
