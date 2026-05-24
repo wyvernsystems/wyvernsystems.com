@@ -30,9 +30,11 @@ jobs:
           node-version: "20"
           cache: npm
 
-      - name: Install and build
+      - name: Install, test, audit, and build
         run: |
           npm ci
+          npm test
+          npm audit --audit-level=high
           npm run build
 
       - name: Configure Pages

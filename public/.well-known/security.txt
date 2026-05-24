@@ -1,0 +1,4 @@
+Contact: https://www.linkedin.com/in/ron-picard-8b7b3059
+Preferred-Languages: en
+Canonical: https://wyvernsystems.com/.well-known/security.txt
+Policy: https://github.com/wyvernsystems/wyvernsystems.com/blob/main/SECURITY.md
