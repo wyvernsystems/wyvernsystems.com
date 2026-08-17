@@ -22,4 +22,15 @@ describe("FreeProductCard", () => {
 
     expect(screen.getByText(`ext install ${product.installId}`)).toBeInTheDocument();
   });
+
+  it("applies accent class badge and blank targets when product provided", () => {
+    const product = FREE_PRODUCTS[1];
+    const { container } = render(<FreeProductCard product={product} />);
+
+    expect(container.querySelector("article")).toHaveClass(`free-product-card--${product.accent}`);
+    expect(screen.getByText(product.badge)).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Marketplace" })).toHaveAttribute("target", "_blank");
+    expect(screen.getByRole("link", { name: "Source" })).toHaveAttribute("target", "_blank");
+  });
 });
+

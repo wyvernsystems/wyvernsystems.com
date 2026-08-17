@@ -87,4 +87,18 @@ describe("App", () => {
     expect(within(nav).getByRole("link", { name: "Contact" })).toHaveAttribute("href", "#contact");
   });
 
+  it("exposes consulting products and contact targets when mounted", () => {
+    const { container } = render(<App />);
+    expect(container.querySelector("#consulting")).toBeInTheDocument();
+    expect(container.querySelector("#products")).toBeInTheDocument();
+    expect(container.querySelector("#contact")).toBeInTheDocument();
+  });
+
+  it("links product source repos when rendered", () => {
+    render(<App />);
+    const hrefs = screen.getAllByRole("link", { name: "Source" }).map((a) => a.getAttribute("href"));
+    expect(hrefs).toContain("https://github.com/wyvernsystems/auto-color-vscode-extension");
+    expect(hrefs).toContain("https://github.com/wyvernsystems/ai-rulebook-vscode-extension");
+  });
 });
+

@@ -9,26 +9,32 @@
     "build-og-image": "node scripts/build-og-image.mjs",
     "preview": "vite preview",
     "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
     "test:watch": "vitest",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "test:all": "vitest run && playwright test",
     "fill-dragon-holes": "node scripts/fill-dragon-holes.mjs",
     "remove-dragon-rock": "node scripts/remove-dragon-rock.mjs",
     "build-dragon-icon": "node scripts/build-dragon-assets.mjs",
     "build-dragon-assets": "node scripts/build-dragon-assets.mjs"
   },
   "dependencies": {
-    "@fontsource/cinzel": "^5.2.8",
-    "@fontsource/inter": "^5.2.8",
-    "@fontsource/share-tech-mono": "^5.2.7",
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0"
+    "@fontsource/cinzel": "^5.3.0",
+    "@fontsource/inter": "^5.3.0",
+    "@fontsource/share-tech-mono": "^5.3.0",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8"
   },
   "devDependencies": {
-    "@testing-library/jest-dom": "^6.9.1",
+    "@playwright/test": "^1.62.1",
+    "@testing-library/jest-dom": "^7.0.1",
     "@testing-library/react": "^16.3.2",
-    "@vitejs/plugin-react": "^4.4.1",
-    "jsdom": "^29.1.1",
-    "sharp": "^0.34.5",
-    "vite": "^6.2.5",
-    "vitest": "^4.1.7"
+    "@vitejs/plugin-react": "^6.0.5",
+    "@vitest/coverage-v8": "^4.1.10",
+    "jsdom": "^30.0.1",
+    "sharp": "^0.35.3",
+    "vite": "^8.2.1",
+    "vitest": "^4.1.10"
   }
 }

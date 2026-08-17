@@ -15,9 +15,13 @@ describe("buildContentSecurityPolicy", () => {
     expect(csp).toContain("https://WyvernSystemsLLC.gallerycdn.vsassets.io");
     expect(csp).not.toContain("fonts.googleapis.com");
     expect(csp).toContain("frame-ancestors 'none'");
+    expect(csp).toContain("script-src-attr 'none'");
+    expect(csp).toContain("worker-src 'none'");
+    expect(csp).toContain("media-src 'none'");
     expect(csp).toContain("upgrade-insecure-requests");
   });
 });
+
 
 describe("injectProductionSecurityIntoHtml", () => {
   it("replaces csp placeholder with policy and frame options when placeholder present", () => {

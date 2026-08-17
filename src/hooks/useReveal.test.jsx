@@ -66,4 +66,24 @@ describe("useReveal", () => {
     observerCallback([{ isIntersecting: true }]);
     await waitFor(() => expect(screen.getByTestId("visible")).toHaveTextContent("true"));
   });
+
+  it("stays hidden when observed element has not intersected", () => {
+    mockPrefersReducedMotion(false);
+
+    let observerCallback;
+    class MockIntersectionObserver {
+      constructor(callback) {
+        observerCallback = callback;
+      }
+      observe() {}
+      disconnect() {}
+    }
+    vi.stubGlobal("IntersectionObserver", MockIntersectionObserver);
+
+    render(<RevealTarget />);
+    observerCallback([{ isIntersecting: false }]);
+
+    expect(screen.getByTestId("visible")).toHaveTextContent("false");
+  });
 });
+
