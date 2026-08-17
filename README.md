@@ -74,7 +74,7 @@ Other `build-dragon-*` and `fill-dragon-holes` scripts are one-off asset mainten
 
 - **`vite.config.js`** — `base: "/"` for GitHub Pages at the site root. Production builds set `build.sourcemap: false` and inject CSP via the `<!-- vite:csp -->` placeholder in **`index.html`**.
 - **`public/CNAME`** — Custom domain (`wyvernsystems.com`) for GitHub Pages.
-- **Node** — CI uses Node 20 (see [`.github/workflows/deploy-pages.yml`](.github/workflows/deploy-pages.yml)).
+- **Node** — CI uses Node 22 (see [`.github/workflows/deploy-pages.yml`](.github/workflows/deploy-pages.yml)); jsdom 30 requires Node 22+.
 - **Stack** — React 19, Vite 8, Vitest 4, Playwright 1.62 (see **`package.json`**).
 
 ## Deploy
