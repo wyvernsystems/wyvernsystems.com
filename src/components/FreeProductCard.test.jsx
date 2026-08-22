@@ -1,5 +1,5 @@
-import { render, screen, within } from "@testing-library/react";
-import { describe, expect, it } from "vitest";
+import { fireEvent, render, screen, within } from "@testing-library/react";
+import { describe, expect, it, vi } from "vitest";
 import { FREE_PRODUCTS } from "../data/freeProducts.js";
 import FreeProductCard from "./FreeProductCard.jsx";
 
@@ -31,6 +31,23 @@ describe("FreeProductCard", () => {
     expect(screen.getByText(product.badge)).toBeInTheDocument();
     expect(screen.getByRole("link", { name: "Marketplace" })).toHaveAttribute("target", "_blank");
     expect(screen.getByRole("link", { name: "Source" })).toHaveAttribute("target", "_blank");
+  });
+
+  it("copies the install command when requested", async () => {
+    const product = FREE_PRODUCTS[0];
+    const writeText = vi.fn().mockResolvedValue(undefined);
+    Object.defineProperty(navigator, "clipboard", {
+      configurable: true,
+      value: { writeText },
+    });
+
+    render(<FreeProductCard product={product} />);
+    fireEvent.click(
+      screen.getByRole("button", { name: `Copy install command for ${product.title}` }),
+    );
+
+    expect(writeText).toHaveBeenCalledWith(`ext install ${product.installId}`);
+    expect(await screen.findByText("Copied")).toBeInTheDocument();
   });
 });
 

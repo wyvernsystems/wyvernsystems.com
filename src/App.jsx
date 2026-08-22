@@ -8,13 +8,14 @@ import { FREE_PRODUCTS } from "./data/freeProducts.js";
 const RON_SITE = "https://ronpicard.com";
 const LINKEDIN_URL = "https://www.linkedin.com/in/ron-picard-8b7b3059";
 
-const SPECTRUM = [
+const SPECIALTIES = [
   "AI",
   "Autonomy",
   "Software",
   "Hardware",
   "Robotics",
   "Aviation",
+  "Aircraft design",
   "Flight test",
   "& more",
 ];
@@ -55,43 +56,84 @@ export default function App() {
         </div>
 
         <div className="home-inner">
-          <p className="hero-llc">Wyvern Systems, LLC</p>
-          <h1 className="hero-title">Wyvern Systems</h1>
-          <p className="hero-byline">
-            <span className="hero-name">Ron Picard</span>
-          </p>
-          <HeroLead />
-
           <nav className="section-nav" aria-label="Page sections">
-            {SECTION_LINKS.map((link) => (
-              <a key={link.href} className="section-nav__link" href={link.href}>
-                {link.label}
-              </a>
-            ))}
+            <a className="section-nav__brand" href="#top" aria-label="Wyvern Systems home">
+              WS
+            </a>
+            <div className="section-nav__links">
+              {SECTION_LINKS.map((link) => (
+                <a key={link.href} className="section-nav__link" href={link.href}>
+                  {link.label}
+                </a>
+              ))}
+            </div>
           </nav>
 
-          <div id="consulting" className="offers-grid scroll-target">
-            {CONSULTING_OFFERS.map((offer) => (
-              <article key={offer.id} className={`offer-card offer-card--${offer.id}`}>
-                <OfferIcon type={offer.id} />
-                <h2>
-                  {offer.title[0]}
-                  <br />
-                  {offer.title[1]}
+          <header className="hero">
+            <p className="hero-llc">Wyvern Systems, LLC</p>
+            <h1 className="hero-title">Wyvern Systems</h1>
+            <p className="hero-byline">
+              Independent technical consulting by <span className="hero-name">Ron Picard</span>
+            </p>
+            <HeroLead />
+            <div className="hero-cta">
+              <a
+                className="btn btn-ember"
+                href={LINKEDIN_URL}
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                Start a conversation
+              </a>
+              <a className="btn btn-ghost" href="#consulting">
+                Explore services
+              </a>
+            </div>
+          </header>
+
+          <section
+            id="consulting"
+            className="consulting scroll-target"
+            aria-labelledby="consulting-heading"
+          >
+            <div className="section-title-row">
+              <div>
+                <p className="section-eyebrow">Capabilities</p>
+                <h2 className="section-heading" id="consulting-heading">
+                  Consulting
                 </h2>
-                <p className="offer-card__desc">{offer.description}</p>
-              </article>
-            ))}
-          </div>
+              </div>
+              <p className="section-summary">Deep technical work, clearly delivered.</p>
+            </div>
+            <div className="offers-grid">
+              {CONSULTING_OFFERS.map((offer) => (
+                <article key={offer.id} className={`offer-card offer-card--${offer.id}`}>
+                  <OfferIcon type={offer.id} />
+                  <h3>
+                    {offer.title[0]}
+                    <br />
+                    {offer.title[1]}
+                  </h3>
+                  <p className="offer-card__desc">{offer.description}</p>
+                </article>
+              ))}
+            </div>
+          </section>
 
           <section
             id="products"
             className="free-products scroll-target"
             aria-labelledby="free-products-heading"
           >
-            <h2 className="section-heading" id="free-products-heading">
-              Free products
-            </h2>
+            <div className="section-title-row">
+              <div>
+                <p className="section-eyebrow">Open tools</p>
+                <h2 className="section-heading" id="free-products-heading">
+                  Free products
+                </h2>
+              </div>
+              <p className="section-summary">Useful software, available at no cost.</p>
+            </div>
             <ul className="free-products-list" role="list">
               {FREE_PRODUCTS.map((product) => (
                 <li key={product.id} className="free-products-list__item">
@@ -102,9 +144,11 @@ export default function App() {
           </section>
 
           <footer id="contact" className="site-footer site-footer--terminal scroll-target">
-            <h2 className="section-heading section-heading--sub">What I cover</h2>
-            <ul className="pill-row" aria-label="Technical spectrum">
-              {SPECTRUM.map((label) => (
+            <p className="section-eyebrow">Expertise</p>
+            <h2 className="section-heading section-heading--sub">How I can help you</h2>
+            <p className="specialties-intro">I specialize in:</p>
+            <ul className="pill-row" aria-label="Areas of expertise">
+              {SPECIALTIES.map((label) => (
                 <li key={label}>{label}</li>
               ))}
             </ul>

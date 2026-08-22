@@ -1,9 +1,31 @@
+import { useState } from "react";
+
 /**
  * @param {{
  *   product: import("../data/freeProducts.js").FREE_PRODUCTS[number];
  * }} props
  */
 export default function FreeProductCard({ product }) {
+  const [copyStatus, setCopyStatus] = useState("idle");
+  const installCommand = `ext install ${product.installId}`;
+
+  async function copyInstallCommand() {
+    if (!navigator.clipboard?.writeText) {
+      setCopyStatus("unavailable");
+      return;
+    }
+
+    try {
+      await navigator.clipboard.writeText(installCommand);
+      setCopyStatus("copied");
+    } catch {
+      setCopyStatus("unavailable");
+    }
+  }
+
+  const copyLabel =
+    copyStatus === "copied" ? "Copied" : copyStatus === "unavailable" ? "Unavailable" : "Copy";
+
   return (
     <article
       className={`free-product-card free-product-card--${product.accent}`}
@@ -48,12 +70,21 @@ export default function FreeProductCard({ product }) {
             Source
           </a>
         </div>
-        <p className="free-product-card__install">
-          <span className="free-product-card__install-label">Quick Open</span>
-          <code className="free-product-card__install-cmd">
-            ext install {product.installId}
-          </code>
-        </p>
+        <div className="free-product-card__install">
+          <span className="free-product-card__install-label">Quick open</span>
+          <div className="free-product-card__command">
+            <code className="free-product-card__install-cmd">{installCommand}</code>
+            <button
+              className="free-product-card__copy"
+              type="button"
+              onClick={copyInstallCommand}
+              disabled={copyStatus === "unavailable"}
+              aria-label={`Copy install command for ${product.title}`}
+            >
+              {copyLabel}
+            </button>
+          </div>
+        </div>
       </div>
     </article>
   );

@@ -12,7 +12,10 @@ describe("App", () => {
     expect(screen.getByRole("heading", { name: /educational/i })).toBeInTheDocument();
     expect(screen.getByText(/Systems, AI, hardware/i)).toBeInTheDocument();
     expect(screen.getByText(/Lessons, workshops/i)).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "How I can help you" })).toBeInTheDocument();
+    expect(screen.getByText("I specialize in:")).toBeInTheDocument();
     expect(screen.getByText("AI")).toBeInTheDocument();
+    expect(screen.getByText("Aircraft design")).toBeInTheDocument();
     expect(screen.getByText("& more")).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "Auto Color" })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "AI Rulebook" })).toBeInTheDocument();
