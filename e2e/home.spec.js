@@ -12,9 +12,11 @@ test.describe("homepage", () => {
     await expect(page.getByRole("heading", { name: "Free products" })).toBeVisible();
     await expect(page.getByRole("heading", { name: "Auto Color" })).toBeVisible();
     await expect(page.getByRole("heading", { name: "AI Rulebook" })).toBeVisible();
-    await expect(page.getByRole("heading", { name: "How I can help you" })).toBeVisible();
-    await expect(page.getByText("I specialize in:")).toBeVisible();
-    await expect(page.getByText("Aircraft design")).toBeVisible();
+    await expect(page.getByRole("heading", { name: "Contact" })).toBeVisible();
+    await expect(page.getByRole("link", { name: "Explore products" })).toHaveAttribute(
+      "href",
+      "#products",
+    );
     await expect(page.getByText(`© ${new Date().getFullYear()} Wyvern Systems, LLC`)).toBeVisible();
   });
 

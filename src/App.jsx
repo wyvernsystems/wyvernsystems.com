@@ -8,23 +8,12 @@ import { FREE_PRODUCTS } from "./data/freeProducts.js";
 const RON_SITE = "https://ronpicard.com";
 const LINKEDIN_URL = "https://www.linkedin.com/in/ron-picard-8b7b3059";
 
-const SPECIALTIES = [
-  "AI",
-  "Autonomy",
-  "Software",
-  "Hardware",
-  "Robotics",
-  "Aviation",
-  "Aircraft design",
-  "Flight test",
-  "& more",
-];
-
 const CONSULTING_OFFERS = [
   {
     id: "technical",
     title: ["Technical", "Consulting"],
-    description: "Systems, AI, hardware, robotics, aviation, and flight test.",
+    description:
+      "Systems, AI, autonomy, software, hardware, robotics, aviation, aircraft design, flight test, and more.",
   },
   {
     id: "educational",
@@ -78,7 +67,7 @@ export default function App() {
             <HeroLead />
             <div className="hero-cta">
               <a
-                className="btn btn-ember"
+                className="btn btn-ghost"
                 href={LINKEDIN_URL}
                 rel="noopener noreferrer"
                 target="_blank"
@@ -87,6 +76,9 @@ export default function App() {
               </a>
               <a className="btn btn-ghost" href="#consulting">
                 Explore services
+              </a>
+              <a className="btn btn-ghost" href="#products">
+                Explore products
               </a>
             </div>
           </header>
@@ -103,7 +95,6 @@ export default function App() {
                   Consulting
                 </h2>
               </div>
-              <p className="section-summary">Deep technical work, clearly delivered.</p>
             </div>
             <div className="offers-grid">
               {CONSULTING_OFFERS.map((offer) => (
@@ -132,7 +123,6 @@ export default function App() {
                   Free products
                 </h2>
               </div>
-              <p className="section-summary">Useful software, available at no cost.</p>
             </div>
             <ul className="free-products-list" role="list">
               {FREE_PRODUCTS.map((product) => (
@@ -144,18 +134,11 @@ export default function App() {
           </section>
 
           <footer id="contact" className="site-footer site-footer--terminal scroll-target">
-            <p className="section-eyebrow">Expertise</p>
-            <h2 className="section-heading section-heading--sub">How I can help you</h2>
-            <p className="specialties-intro">I specialize in:</p>
-            <ul className="pill-row" aria-label="Areas of expertise">
-              {SPECIALTIES.map((label) => (
-                <li key={label}>{label}</li>
-              ))}
-            </ul>
+            <h2 className="section-heading section-heading--sub">Contact</h2>
 
             <div className="home-cta">
               <a
-                className="btn btn-ember"
+                className="btn btn-ghost"
                 href={LINKEDIN_URL}
                 rel="noopener noreferrer"
                 target="_blank"

@@ -54,7 +54,7 @@ export default function FreeProductCard({ product }) {
         <p className="free-product-card__desc">{product.description}</p>
         <div className="free-product-card__actions">
           <a
-            className="free-product-card__btn free-product-card__btn--primary"
+            className="free-product-card__btn free-product-card__btn--ghost"
             href={product.marketplaceUrl}
             rel="noopener noreferrer"
             target="_blank"

@@ -15,10 +15,12 @@ describe("FreeProductCard", () => {
     const marketplace = screen.getByRole("link", { name: "Marketplace" });
     expect(marketplace).toHaveAttribute("href", product.marketplaceUrl);
     expect(marketplace).toHaveAttribute("rel", "noopener noreferrer");
+    expect(marketplace).toHaveClass("free-product-card__btn--ghost");
 
     const source = screen.getByRole("link", { name: "Source" });
     expect(source).toHaveAttribute("href", product.repoUrl);
     expect(source).toHaveAttribute("rel", "noopener noreferrer");
+    expect(source).toHaveClass("free-product-card__btn--ghost");
 
     expect(screen.getByText(`ext install ${product.installId}`)).toBeInTheDocument();
   });

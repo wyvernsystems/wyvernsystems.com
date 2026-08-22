@@ -10,13 +10,13 @@ describe("App", () => {
     expect(screen.getByText("Wyvern Systems, LLC")).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: /technical/i })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: /educational/i })).toBeInTheDocument();
-    expect(screen.getByText(/Systems, AI, hardware/i)).toBeInTheDocument();
+    expect(
+      screen.getByText(
+        "Systems, AI, autonomy, software, hardware, robotics, aviation, aircraft design, flight test, and more.",
+      ),
+    ).toBeInTheDocument();
     expect(screen.getByText(/Lessons, workshops/i)).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: "How I can help you" })).toBeInTheDocument();
-    expect(screen.getByText("I specialize in:")).toBeInTheDocument();
-    expect(screen.getByText("AI")).toBeInTheDocument();
-    expect(screen.getByText("Aircraft design")).toBeInTheDocument();
-    expect(screen.getByText("& more")).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Contact" })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "Auto Color" })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "AI Rulebook" })).toBeInTheDocument();
   });
@@ -88,6 +88,25 @@ describe("App", () => {
     );
     expect(within(nav).getByRole("link", { name: "Products" })).toHaveAttribute("href", "#products");
     expect(within(nav).getByRole("link", { name: "Contact" })).toHaveAttribute("href", "#contact");
+  });
+
+  it("renders matching outlined hero calls to action", () => {
+    const { container } = render(<App />);
+    const heroCta = container.querySelector(".hero-cta");
+    const links = within(heroCta).getAllByRole("link");
+
+    expect(links).toHaveLength(3);
+    expect(within(heroCta).getByRole("link", { name: "Explore services" })).toHaveAttribute(
+      "href",
+      "#consulting",
+    );
+    expect(within(heroCta).getByRole("link", { name: "Explore products" })).toHaveAttribute(
+      "href",
+      "#products",
+    );
+    for (const link of links) {
+      expect(link).toHaveClass("btn-ghost");
+    }
   });
 
   it("exposes consulting products and contact targets when mounted", () => {

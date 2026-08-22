@@ -25,11 +25,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Expanded the technical consulting summary, simplified the contact section and non-interactive hover states, added hero links for services and products, and standardized non-navigation buttons on the outlined Source style.
 - Upgraded dependencies to latest stable: Vite 8, `@vitejs/plugin-react` 6, Vitest 4.1, React 19.2, `@testing-library/jest-dom` 7, jsdom 30, `@fontsource` 5.3, and related tooling.
 - README documents unit vs end-to-end testing, coverage, current stack versions, security posture, npm scripts, and configuration.
 - Homepage order: consulting, then What I cover / CTAs, then free products; removed product card image placeholders and marketplace lead line.
-- UI pass: section headings, consulting blurbs, Marketplace icons, stronger content panel scrim, CTA hierarchy (primary LinkedIn / ghost portfolio), product accent borders, footer at bottom after free products.
+- UI pass: section headings, consulting blurbs, Marketplace icons, stronger content panel scrim, consistent outlined CTAs, product accent borders, footer at bottom after free products.
 - Responsive scaling: fluid type/spacing, viewport-based gutters and content max-width, scroll-friendly layout on small and tall screens.
-- Visual polish: consulting tile icons and accents, sticky section nav, terminal-style footer panel, typewriter hero lead, pill hovers, wyvern scroll parallax (respects reduced motion).
+- Visual polish: consulting tile icons and accents, sticky section nav, terminal-style footer panel, typewriter hero lead, and wyvern scroll parallax (respects reduced motion).
 - Vitest unit tests for CSP helpers, `App`, `MatrixRain`, `WyvernBackdrop`, `HeroLead`, `FreeProductCard`, `OfferIcon`, `FREE_PRODUCTS`, and `useReveal`.
 - `npm test`, `npm run test:watch`, `npm run test:e2e`, and `npm run test:all` scripts; CI and deploy run unit and Playwright tests.
