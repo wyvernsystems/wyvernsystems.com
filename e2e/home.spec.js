@@ -37,10 +37,10 @@ test.describe("homepage", () => {
     await expect(portfolio).toHaveAttribute("rel", "noopener noreferrer");
   });
 
-  test("links free products to marketplace and source when rendered", async ({ page }) => {
+  test("links free products to marketplace open vsx and source when rendered", async ({ page }) => {
     await page.goto("/");
 
-    const marketplace = page.getByRole("link", { name: "Marketplace" });
+    const marketplace = page.getByRole("link", { name: "VS Marketplace" });
     await expect(marketplace).toHaveCount(2);
     await expect(marketplace.nth(0)).toHaveAttribute(
       "href",
@@ -49,6 +49,17 @@ test.describe("homepage", () => {
     await expect(marketplace.nth(1)).toHaveAttribute(
       "href",
       "https://marketplace.visualstudio.com/items?itemName=WyvernSystemsLLC.ai-rulebook",
+    );
+
+    const openVsx = page.getByRole("link", { name: "Open VSX" });
+    await expect(openVsx).toHaveCount(2);
+    await expect(openVsx.nth(0)).toHaveAttribute(
+      "href",
+      "https://open-vsx.org/extension/WyvernSystemsLLC/auto-color",
+    );
+    await expect(openVsx.nth(1)).toHaveAttribute(
+      "href",
+      "https://open-vsx.org/extension/WyvernSystemsLLC/ai-rulebook",
     );
 
     const source = page.getByRole("link", { name: "Source" });

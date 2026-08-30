@@ -24,7 +24,7 @@ describe("App", () => {
   it("links free products to the Visual Studio Marketplace when rendered", () => {
     render(<App />);
 
-    const marketplaceLinks = screen.getAllByRole("link", { name: "Marketplace" });
+    const marketplaceLinks = screen.getAllByRole("link", { name: "VS Marketplace" });
     const hrefs = marketplaceLinks.map((a) => a.getAttribute("href"));
     expect(hrefs).toContain(
       "https://marketplace.visualstudio.com/items?itemName=WyvernSystemsLLC.auto-color",
@@ -33,6 +33,18 @@ describe("App", () => {
       "https://marketplace.visualstudio.com/items?itemName=WyvernSystemsLLC.ai-rulebook",
     );
     for (const link of marketplaceLinks) {
+      expect(link).toHaveAttribute("rel", "noopener noreferrer");
+    }
+  });
+
+  it("links free products to Open VSX when rendered", () => {
+    render(<App />);
+
+    const openVsxLinks = screen.getAllByRole("link", { name: "Open VSX" });
+    const hrefs = openVsxLinks.map((a) => a.getAttribute("href"));
+    expect(hrefs).toContain("https://open-vsx.org/extension/WyvernSystemsLLC/auto-color");
+    expect(hrefs).toContain("https://open-vsx.org/extension/WyvernSystemsLLC/ai-rulebook");
+    for (const link of openVsxLinks) {
       expect(link).toHaveAttribute("rel", "noopener noreferrer");
     }
   });

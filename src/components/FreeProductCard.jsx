@@ -59,7 +59,15 @@ export default function FreeProductCard({ product }) {
             rel="noopener noreferrer"
             target="_blank"
           >
-            Marketplace
+            VS Marketplace
+          </a>
+          <a
+            className="free-product-card__btn free-product-card__btn--ghost"
+            href={product.openVsxUrl}
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            Open VSX
           </a>
           <a
             className="free-product-card__btn free-product-card__btn--ghost"

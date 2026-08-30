@@ -13,20 +13,43 @@ export default function HeroLead() {
   );
 
   useEffect(() => {
-    if (prefersReducedMotion()) return;
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let id = 0;
 
-    let index = 0;
-    setDisplay("");
-    const stepMs = 32;
-    const id = window.setInterval(() => {
-      index += 1;
-      setDisplay(FULL_TEXT.slice(0, index));
-      if (index >= FULL_TEXT.length) {
-        window.clearInterval(id);
+    const stopTyping = () => {
+      if (id) window.clearInterval(id);
+      id = 0;
+    };
+
+    const startTyping = () => {
+      stopTyping();
+      let index = 0;
+      setDisplay("");
+      const stepMs = 32;
+      id = window.setInterval(() => {
+        index += 1;
+        setDisplay(FULL_TEXT.slice(0, index));
+        if (index >= FULL_TEXT.length) {
+          stopTyping();
+        }
+      }, stepMs);
+    };
+
+    const onMotionChange = () => {
+      if (mq.matches) {
+        stopTyping();
+        setDisplay(FULL_TEXT);
+      } else {
+        startTyping();
       }
-    }, stepMs);
+    };
 
-    return () => window.clearInterval(id);
+    onMotionChange();
+    mq.addEventListener("change", onMotionChange);
+    return () => {
+      stopTyping();
+      mq.removeEventListener("change", onMotionChange);
+    };
   }, []);
 
   return (

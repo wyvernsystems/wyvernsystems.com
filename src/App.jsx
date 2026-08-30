@@ -1,3 +1,4 @@
+import DecorativeBoundary from "./components/DecorativeBoundary.jsx";
 import FreeProductCard from "./components/FreeProductCard.jsx";
 import HeroLead from "./components/HeroLead.jsx";
 import MatrixRain from "./components/MatrixRain.jsx";
@@ -33,10 +34,12 @@ export default function App() {
 
   return (
     <>
-      <WyvernBackdrop />
-      <div className="matrix-vignette" aria-hidden="true" />
-      <div className="grain matrix-grain" aria-hidden="true" />
-      <MatrixRain />
+      <DecorativeBoundary>
+        <WyvernBackdrop />
+        <div className="matrix-vignette" aria-hidden="true" />
+        <div className="grain matrix-grain" aria-hidden="true" />
+        <MatrixRain />
+      </DecorativeBoundary>
 
       <section className="home" id="top" aria-label="Wyvern Systems">
         <div className="home-bg">

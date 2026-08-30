@@ -17,10 +17,15 @@ export function useReveal(options = {}) {
       setVisible(true);
       return;
     }
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const onMotionChange = () => {
+      if (mq.matches) setVisible(true);
+    };
+    mq.addEventListener("change", onMotionChange);
     const el = ref.current;
     if (!el || typeof IntersectionObserver === "undefined") {
       setVisible(true);
-      return;
+      return () => mq.removeEventListener("change", onMotionChange);
     }
     const obs = new IntersectionObserver(
       ([entry]) => {
@@ -35,7 +40,10 @@ export function useReveal(options = {}) {
       }
     );
     obs.observe(el);
-    return () => obs.disconnect();
+    return () => {
+      obs.disconnect();
+      mq.removeEventListener("change", onMotionChange);
+    };
   }, [options.rootMargin]);
 
   return [ref, visible];

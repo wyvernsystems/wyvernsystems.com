@@ -23,6 +23,8 @@ export function mockCanvas2dContext() {
     font: "",
     fillRect: vi.fn(),
     fillText: vi.fn(),
+    drawImage: vi.fn(),
+    clearRect: vi.fn(),
     globalCompositeOperation: "",
   };
   vi.spyOn(HTMLCanvasElement.prototype, "getContext").mockReturnValue(ctx);

@@ -1,4 +1,4 @@
-/** Free Wyvern Systems extensions on the Visual Studio Marketplace. */
+/** Free Wyvern Systems extensions on the Visual Studio Marketplace and Open VSX. */
 export const FREE_PRODUCTS = [
   {
     id: "auto-color",
@@ -11,6 +11,7 @@ export const FREE_PRODUCTS = [
       "https://WyvernSystemsLLC.gallerycdn.vsassets.io/extensions/wyvernsystemsllc/auto-color/1.0.5/1777992574542/Microsoft.VisualStudio.Services.Icons.Default",
     marketplaceUrl:
       "https://marketplace.visualstudio.com/items?itemName=WyvernSystemsLLC.auto-color",
+    openVsxUrl: "https://open-vsx.org/extension/WyvernSystemsLLC/auto-color",
     repoUrl: "https://github.com/wyvernsystems/auto-color-vscode-extension",
     installId: "WyvernSystemsLLC.auto-color",
   },
@@ -25,6 +26,7 @@ export const FREE_PRODUCTS = [
       "https://WyvernSystemsLLC.gallerycdn.vsassets.io/extensions/wyvernsystemsllc/ai-rulebook/1.4.0/1778030278857/Microsoft.VisualStudio.Services.Icons.Default",
     marketplaceUrl:
       "https://marketplace.visualstudio.com/items?itemName=WyvernSystemsLLC.ai-rulebook",
+    openVsxUrl: "https://open-vsx.org/extension/WyvernSystemsLLC/ai-rulebook",
     repoUrl: "https://github.com/wyvernsystems/ai-rulebook-vscode-extension",
     installId: "WyvernSystemsLLC.ai-rulebook",
   },

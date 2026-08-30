@@ -12,10 +12,15 @@ describe("FreeProductCard", () => {
     expect(screen.getByText(product.description)).toBeInTheDocument();
     expect(within(container).getByRole("presentation")).toHaveAttribute("src", product.iconUrl);
 
-    const marketplace = screen.getByRole("link", { name: "Marketplace" });
+    const marketplace = screen.getByRole("link", { name: "VS Marketplace" });
     expect(marketplace).toHaveAttribute("href", product.marketplaceUrl);
     expect(marketplace).toHaveAttribute("rel", "noopener noreferrer");
     expect(marketplace).toHaveClass("free-product-card__btn--ghost");
+
+    const openVsx = screen.getByRole("link", { name: "Open VSX" });
+    expect(openVsx).toHaveAttribute("href", product.openVsxUrl);
+    expect(openVsx).toHaveAttribute("rel", "noopener noreferrer");
+    expect(openVsx).toHaveClass("free-product-card__btn--ghost");
 
     const source = screen.getByRole("link", { name: "Source" });
     expect(source).toHaveAttribute("href", product.repoUrl);
@@ -31,7 +36,8 @@ describe("FreeProductCard", () => {
 
     expect(container.querySelector("article")).toHaveClass(`free-product-card--${product.accent}`);
     expect(screen.getByText(product.badge)).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: "Marketplace" })).toHaveAttribute("target", "_blank");
+    expect(screen.getByRole("link", { name: "VS Marketplace" })).toHaveAttribute("target", "_blank");
+    expect(screen.getByRole("link", { name: "Open VSX" })).toHaveAttribute("target", "_blank");
     expect(screen.getByRole("link", { name: "Source" })).toHaveAttribute("target", "_blank");
   });
 

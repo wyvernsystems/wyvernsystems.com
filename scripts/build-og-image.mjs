@@ -1,5 +1,5 @@
 /**
- * Writes public/images/og-image.png (1200×630) for Open Graph / Twitter cards.
+ * Writes assets/brand/og-image.png (1200×630) for Open Graph / Twitter cards.
  * Matrix rain + logo + hero copy + consulting boxes; reproducible (seeded RNG).
  */
 import sharp from "sharp";
@@ -9,10 +9,9 @@ import { fileURLToPath } from "node:url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = join(__dirname, "..");
-const pub = join(root, "public");
-const img = join(pub, "images");
-const logoPath = join(img, "wyvern-systems-logo-matrix.png");
-const outPath = join(img, "og-image.png");
+const brand = join(root, "assets", "brand");
+const logoPath = join(brand, "wyvern-systems-logo-matrix.png");
+const outPath = join(brand, "og-image.png");
 
 const W = 1200;
 const H = 630;
@@ -144,7 +143,7 @@ async function main() {
 
   await sharp(rainPng)
     .composite([{ input: uiPng, top: 0, left: 0 }])
-    .png({ compressionLevel: 9 })
+    .png({ compressionLevel: 9, palette: true, quality: 90 })
     .toFile(outPath);
 
   console.log(`Wrote ${outPath}`);
