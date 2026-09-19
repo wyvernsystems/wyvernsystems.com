@@ -7,7 +7,7 @@ describe("App", () => {
     render(<App />);
 
     expect(screen.getByRole("heading", { level: 1, name: "Wyvern Systems" })).toBeInTheDocument();
-    expect(screen.getByText("Wyvern Systems, LLC")).toBeInTheDocument();
+    expect(screen.getByText("Wyvern Systems LLC")).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: /technical/i })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: /educational/i })).toBeInTheDocument();
     expect(
@@ -72,8 +72,24 @@ describe("App", () => {
 
   it("shows current year in copyright when rendered", () => {
     const { container } = render(<App />);
-    const copy = container.querySelector(".site-footer .home-copy");
-    expect(copy).toHaveTextContent(`© ${new Date().getFullYear()} Wyvern Systems, LLC`);
+    const copyBlocks = container.querySelectorAll(".site-footer .home-copy");
+    const copy = copyBlocks[copyBlocks.length - 1];
+    expect(copy).toHaveTextContent(`© ${new Date().getFullYear()} Wyvern Systems LLC`);
+  });
+
+  it("states the legal entity that owns the site when rendered", () => {
+    render(<App />);
+    expect(
+      screen.getByText(/Wyvern Systems LLC is a United States limited liability company/),
+    ).toBeInTheDocument();
+  });
+
+  it("ties the domain to the owning entity in the footer when rendered", () => {
+    const { container } = render(<App />);
+    const footer = container.querySelector(".site-footer");
+    const ownership = within(footer).getByText(/wyvernsystems\.com/);
+    expect(ownership).toHaveTextContent("wyvernsystems.com");
+    expect(ownership).toHaveTextContent("Wyvern Systems LLC");
   });
 
   it("places free products before the footer block when rendered", () => {

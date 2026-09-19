@@ -6,7 +6,7 @@ test.describe("homepage", () => {
 
     await expect(page).toHaveTitle(/Wyvern Systems/);
     await expect(page.getByRole("heading", { level: 1, name: "Wyvern Systems" })).toBeVisible();
-    await expect(page.getByText("Wyvern Systems, LLC").first()).toBeVisible();
+    await expect(page.getByText("Wyvern Systems LLC").first()).toBeVisible();
     await expect(page.getByRole("heading", { name: /technical consulting/i })).toBeVisible();
     await expect(page.getByRole("heading", { name: /educational consulting/i })).toBeVisible();
     await expect(page.getByRole("heading", { name: "Free products" })).toBeVisible();
@@ -17,7 +17,7 @@ test.describe("homepage", () => {
       "href",
       "#products",
     );
-    await expect(page.getByText(`© ${new Date().getFullYear()} Wyvern Systems, LLC`)).toBeVisible();
+    await expect(page.getByText(`© ${new Date().getFullYear()} Wyvern Systems LLC`)).toBeVisible();
   });
 
   test("opens external ctas in a new tab when rendered", async ({ page }) => {

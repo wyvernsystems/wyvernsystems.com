@@ -40,6 +40,33 @@ test.describe("production build", () => {
     expect((await cname.text()).trim()).toBe("wyvernsystems.com");
   });
 
+  test("serves the page copy in raw HTML when JavaScript is not executed", async ({ request }) => {
+    const home = await request.get("/");
+    expect(home.ok()).toBe(true);
+    const html = await home.text();
+    expect(html).toContain("Solving your hardest technical problems and delivering real results.");
+    expect(html).toContain("Wyvern Systems LLC");
+
+    const notFound = await request.get("/404.html");
+    expect(notFound.ok()).toBe(true);
+    expect(await notFound.text()).toContain("Wyvern Systems LLC");
+  });
+
+  test("describes the company rather than the site styling in the meta description", async ({ request }) => {
+    const html = await (await request.get("/")).text();
+    const description = html.match(/<meta\s+name="description"\s+content="([^"]*)"/)?.[1] ?? "";
+
+    expect(description).toContain("Wyvern Systems LLC");
+    expect(description).not.toMatch(/theme|matrix/i);
+    expect(html).not.toContain("Wyvern Systems, LLC");
+  });
+
+  test("serves robots.txt when requested", async ({ request }) => {
+    const robots = await request.get("/robots.txt");
+    expect(robots.ok()).toBe(true);
+    expect(await robots.text()).toContain("User-agent: *");
+  });
+
   test("exposes open graph title and image when loaded", async ({ page }) => {
     await page.goto("/");
 

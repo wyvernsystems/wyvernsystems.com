@@ -18,6 +18,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- The page content is now included in the served HTML, so visitors, crawlers, and verification services that do not run JavaScript see the full site instead of a blank page.
+- The footer states that Wyvern Systems LLC owns and operates the site and the wyvernsystems.com domain.
+- Unknown URLs now show the site instead of the stock GitHub Pages 404 page.
+- Added `robots.txt` allowing all crawlers.
 - [CHANGELOG.md](CHANGELOG.md) for release notes.
 - **Free products** section for [Auto Color](https://marketplace.visualstudio.com/items?itemName=WyvernSystemsLLC.auto-color) and [AI Rulebook](https://marketplace.visualstudio.com/items?itemName=WyvernSystemsLLC.ai-rulebook) VS Code extensions.
 - Playwright end-to-end tests for homepage content, section navigation, and production security meta.
@@ -25,6 +29,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- The company name now reads "Wyvern Systems LLC" (no comma) everywhere, matching the registered legal name.
+- The search and link-preview description now describes the company instead of the site's visual theme.
 - Expanded the technical consulting summary, simplified the contact section and non-interactive hover states, added hero links for services and products, and standardized non-navigation buttons on the outlined Source style.
 - Upgraded dependencies to latest stable: Vite 8, `@vitejs/plugin-react` 6, Vitest 4.1, React 19.2, `@testing-library/jest-dom` 7, jsdom 30, `@fontsource` 5.3, and related tooling.
 - README documents unit vs end-to-end testing, coverage, current stack versions, security posture, npm scripts, and configuration.

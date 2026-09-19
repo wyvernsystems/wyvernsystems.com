@@ -62,7 +62,7 @@ export default function App() {
           </nav>
 
           <header className="hero">
-            <p className="hero-llc">Wyvern Systems, LLC</p>
+            <p className="hero-llc">Wyvern Systems LLC</p>
             <h1 className="hero-title">Wyvern Systems</h1>
             <p className="hero-byline">
               Independent technical consulting by <span className="hero-name">Ron Picard</span>
@@ -158,7 +158,12 @@ export default function App() {
               </a>
             </div>
 
-            <p className="home-copy">&copy; {year} Wyvern Systems, LLC</p>
+            <p className="home-copy">
+              Wyvern Systems LLC is a United States limited liability company. This site
+              and the wyvernsystems.com domain are owned and operated by Wyvern Systems LLC.
+            </p>
+
+            <p className="home-copy">&copy; {year} Wyvern Systems LLC</p>
           </footer>
         </div>
       </section>

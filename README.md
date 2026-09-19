@@ -1,6 +1,6 @@
 # wyvernsystems.com
 
-Marketing site for **Wyvern Systems, LLC** — a **React** app built with [Vite](https://vitejs.dev/), deployed to [GitHub Pages](https://pages.github.com/) via [GitHub Actions](https://github.com/features/actions).
+Marketing site for **Wyvern Systems LLC** — a **React** app built with [Vite](https://vitejs.dev/), deployed to [GitHub Pages](https://pages.github.com/) via [GitHub Actions](https://github.com/features/actions).
 
 ## Quickstart
 
@@ -23,7 +23,7 @@ Output is **`dist/`**, which matches what the deploy workflow publishes.
 ## Contents
 
 - **`src/`** — `App.jsx`, entrypoint, global styles (`index.css`), and **`components/`** (matrix rain and wyvern backdrop).
-- **`public/`** — Static assets copied to the build root (for example **`CNAME`** for the custom domain and **`.well-known/security.txt`**).
+- **`public/`** — Static assets copied to the build root (for example **`CNAME`** for the custom domain, **`robots.txt`**, and **`.well-known/security.txt`**).
 - **`vite.config.js`** — Vite config and production security meta injection (CSP).
 - **`src/security/`** — CSP helpers (unit tested).
 - **`src/**/*.test.{js,jsx}`** — Vitest unit tests (jsdom + React Testing Library).
@@ -57,7 +57,7 @@ First-time Playwright setup: `npx playwright install`.
 | Script | Purpose |
 | --- | --- |
 | `npm run dev` | Local dev server (no production CSP). |
-| `npm run build` | Sync OG image, then production build to **`dist/`**. |
+| `npm run build` | Sync OG image, production build to **`dist/`**, then prerender the page into **`dist/index.html`** and **`dist/404.html`**. |
 | `npm run preview` | Serve **`dist/`** locally. |
 | `npm test` | Run unit tests once (Vitest). |
 | `npm run test:coverage` | Unit tests with line/branch coverage report (`coverage/`). |
@@ -74,6 +74,7 @@ Other `build-dragon-*` and `fill-dragon-holes` scripts are one-off asset mainten
 
 - **`vite.config.js`** — `base: "/"` for GitHub Pages at the site root. Production builds set `build.sourcemap: false` and inject CSP via the `<!-- vite:csp -->` placeholder in **`index.html`**.
 - **`public/CNAME`** — Custom domain (`wyvernsystems.com`) for GitHub Pages.
+- **`scripts/prerender.mjs`** — Runs after `vite build`. Renders the app to static HTML (via **`src/entry-server.jsx`**) and injects it into **`dist/index.html`** so the page copy is readable without JavaScript, then copies it to **`dist/404.html`** so unknown paths on GitHub Pages show the site. The build fails if the `<div id="root"></div>` placeholder is missing.
 - **Node** — CI uses Node 22 (see [`.github/workflows/deploy-pages.yml`](.github/workflows/deploy-pages.yml)); jsdom 30 requires Node 22+.
 - **Stack** — React 19, Vite 8, Vitest 4, Playwright 1.62 (see **`package.json`**).
 

@@ -2,14 +2,15 @@ import { useEffect, useState } from "react";
 
 const FULL_TEXT = "Solving your hardest technical problems and delivering real results.";
 
-function prefersReducedMotion() {
-  if (typeof window === "undefined") return false;
+/** True when nothing will animate: reduced motion, or a server render with no browser. */
+function showsFullTextImmediately() {
+  if (typeof window === "undefined") return true;
   return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 }
 
 export default function HeroLead() {
   const [display, setDisplay] = useState(() =>
-    prefersReducedMotion() ? FULL_TEXT : "",
+    showsFullTextImmediately() ? FULL_TEXT : "",
   );
 
   useEffect(() => {

@@ -8,7 +8,7 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "node scripts/sync-og-to-root.mjs && vite build",
+    "build": "node scripts/sync-og-to-root.mjs && vite build && node scripts/prerender.mjs",
     "build-og-image": "node scripts/build-og-image.mjs",
     "preview": "vite preview",
     "test": "vitest run",
