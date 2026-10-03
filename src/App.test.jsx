@@ -49,25 +49,26 @@ describe("App", () => {
     }
   });
 
-  it("uses noopener noreferrer on external links when rendered", () => {
+  it("offers only the linkedin button with its logo in contact when rendered", () => {
     const { container } = render(<App />);
     const cta = container.querySelector(".home-cta");
     expect(cta).toBeTruthy();
 
     const links = within(cta).getAllByRole("link");
-    expect(links).toHaveLength(2);
-    for (const link of links) {
-      expect(link).toHaveAttribute("rel", "noopener noreferrer");
-      expect(link).toHaveAttribute("target", "_blank");
-    }
-    expect(within(cta).getByRole("link", { name: /linkedin/i })).toHaveAttribute(
-      "href",
-      "https://www.linkedin.com/in/ron-picard-8b7b3059",
-    );
-    expect(within(cta).getByRole("link", { name: /ronpicard/i })).toHaveAttribute(
-      "href",
-      "https://ronpicard.com",
-    );
+    expect(links).toHaveLength(1);
+    const [linkedin] = links;
+    expect(linkedin).toHaveAccessibleName("Message me on LinkedIn");
+    expect(linkedin).toHaveAttribute("href", "https://www.linkedin.com/in/ron-picard-8b7b3059");
+    expect(linkedin).toHaveAttribute("rel", "noopener noreferrer");
+    expect(linkedin).toHaveAttribute("target", "_blank");
+    expect(linkedin).toHaveClass("btn-ghost");
+
+    const logo = linkedin.querySelector("svg");
+    expect(logo).toHaveAttribute("aria-hidden", "true");
+    expect(logo).toHaveClass("btn__logo");
+    expect(logo.querySelector('[fill="#0A66C2"]')).toBeInTheDocument();
+
+    expect(within(cta).queryByRole("link", { name: /ronpicard/i })).not.toBeInTheDocument();
   });
 
   it("shows the wyvern mark as the nav brand when rendered", () => {
@@ -106,6 +107,16 @@ describe("App", () => {
     }
   });
 
+  it("shows the consulting and free products headings without eyebrow labels when rendered", () => {
+    const { container } = render(<App />);
+
+    expect(screen.getByRole("heading", { level: 2, name: "Consulting" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { level: 2, name: "Free products" })).toBeInTheDocument();
+    expect(screen.queryByText("Capabilities")).not.toBeInTheDocument();
+    expect(screen.queryByText("Open tools")).not.toBeInTheDocument();
+    expect(container.querySelector(".section-eyebrow")).not.toBeInTheDocument();
+  });
+
   it("shows current year in copyright when rendered", () => {
     const { container } = render(<App />);
     const copyBlocks = container.querySelectorAll(".site-footer .home-copy");
@@ -136,11 +147,6 @@ describe("App", () => {
     const footerIdx = children.findIndex((c) => typeof c === "string" && c.includes("site-footer"));
     expect(productsIdx).toBeGreaterThan(-1);
     expect(footerIdx).toBeGreaterThan(productsIdx);
-  });
-
-  it("styles ronpicard link as secondary ghost button when rendered", () => {
-    render(<App />);
-    expect(screen.getByRole("link", { name: /ronpicard/i })).toHaveClass("btn-ghost");
   });
 
   it("renders matching outlined hero calls to action", () => {

@@ -29,8 +29,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- The top-right nav now shows LinkedIn, Wyvern Systems GitHub, and ronpicard.com icons, matching ronpicard.com, in place of the Consulting, Products, and Contact links. The LinkedIn and GitHub icons use each brand's official logo colors.
-- The section nav brand is now the green wyvern mark instead of the "WS" monogram, and the same mark is the browser tab, bookmark, and home-screen icon (replacing the generic chevron).
+- Removed the "Capabilities" and "Open tools" labels above the Consulting and Free products headings.
+- The contact section now has a single "Message me on LinkedIn" button with the LinkedIn logo; the ronpicard.com button was removed (ronpicard.com stays linked from the top nav).
+- The free product buttons now show the VS Code, Open VSX, and GitHub logos in their official colors beside the link names.
+- The top-right nav now shows LinkedIn, Wyvern Systems GitHub, and ronpicard.com icons, in place of the Consulting, Products, and Contact links. They appear as bare logos at a matching size without site borders, and the LinkedIn and GitHub icons use each brand's official logo colors.
+- The section nav brand is now the bare orange wyvern logo, with no ring and sized to match the social icons, instead of the "WS" monogram. The same orange wyvern on a round badge is the browser tab, bookmark, and home-screen icon (replacing the generic chevron).
 - The company name now reads "Wyvern Systems LLC" (no comma) everywhere, matching the registered legal name.
 - The search and link-preview description now describes the company instead of the site's visual theme.
 - Expanded the technical consulting summary, simplified the contact section and non-interactive hover states, added hero links for services and products, and standardized non-navigation buttons on the outlined Source style.

@@ -41,11 +41,9 @@ test.describe("homepage", () => {
     );
     await expect(linkedin).toHaveAttribute("target", "_blank");
     await expect(linkedin).toHaveAttribute("rel", "noopener noreferrer");
+    await expect(linkedin.locator("svg")).toBeVisible();
 
-    const portfolio = contact.getByRole("link", { name: /ronpicard/i });
-    await expect(portfolio).toHaveAttribute("href", "https://ronpicard.com");
-    await expect(portfolio).toHaveAttribute("target", "_blank");
-    await expect(portfolio).toHaveAttribute("rel", "noopener noreferrer");
+    await expect(contact.getByRole("link", { name: /ronpicard/i })).toHaveCount(0);
   });
 
   test("links free products to marketplace open vsx and source when rendered", async ({ page }) => {

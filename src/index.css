@@ -351,18 +351,23 @@ a.btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 2rem;
-  height: 2rem;
-  border: 1px solid rgba(0, 255, 65, 0.35);
-  border-radius: 50%;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 6px;
+  -webkit-tap-highlight-color: rgba(0, 255, 65, 0.2);
+}
+
+.section-nav__brand:focus-visible {
+  outline: 2px solid var(--matrix);
+  outline-offset: 2px;
 }
 
 .section-nav__mark {
   display: block;
-  width: 74%;
-  height: 74%;
+  width: 34px;
+  height: 34px;
   object-fit: contain;
-  filter: drop-shadow(0 0 4px rgba(0, 255, 65, 0.45));
+  filter: drop-shadow(0 0 4px rgba(255, 120, 40, 0.45));
 }
 
 .section-nav__social {
@@ -372,6 +377,7 @@ a.btn {
   flex-shrink: 0;
 }
 
+/* Bare brand logos: no site frame, just a full-size invisible tap target. */
 .section-nav__icon {
   display: flex;
   align-items: center;
@@ -379,29 +385,28 @@ a.btn {
   width: 2.25rem;
   height: 2.25rem;
   border-radius: 6px;
-  color: rgba(180, 255, 196, 0.8);
-  border: 1px solid rgba(0, 255, 65, 0.28);
-  background: rgba(0, 0, 0, 0.45);
   -webkit-tap-highlight-color: rgba(0, 255, 65, 0.2);
-  transition:
-    color 0.2s ease,
-    border-color 0.2s ease,
-    background 0.2s ease,
-    box-shadow 0.2s ease;
 }
 
+.section-nav__icon svg,
 .section-nav__icon-img {
   display: block;
-  width: 22px;
-  height: 22px;
-  border-radius: 4px;
+  width: 26px;
+  height: 26px;
+  transition:
+    transform 0.2s ease,
+    filter 0.2s ease;
 }
 
-.section-nav__icon:hover {
-  color: var(--matrix-bright);
-  border-color: rgba(0, 255, 65, 0.55);
-  background: rgba(0, 255, 65, 0.08);
-  box-shadow: 0 0 14px rgba(0, 255, 65, 0.15);
+/* The ronpicard.com R is wider than tall, so it keeps the shared height and its own width. */
+.section-nav__icon-img {
+  width: auto;
+}
+
+.section-nav__icon:hover svg,
+.section-nav__icon:hover .section-nav__icon-img {
+  transform: translateY(-1px);
+  filter: brightness(1.15) drop-shadow(0 0 6px rgba(255, 255, 255, 0.25));
 }
 
 .section-nav__icon:focus-visible {
@@ -428,8 +433,8 @@ a.btn {
 }
 
 .home-cta {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  max-width: 32rem;
+  grid-template-columns: minmax(0, 1fr);
+  max-width: 20rem;
 }
 
 .hero-cta .btn,
@@ -441,17 +446,6 @@ a.btn {
 .hero-lead strong {
   color: #fff;
   font-weight: 600;
-}
-
-.section-eyebrow {
-  margin: 0 0 0.4rem;
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  font-weight: 500;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--matrix-dim);
-  text-shadow: 0 0 12px rgba(0, 0, 0, 0.9);
 }
 
 .section-title-row {
@@ -507,6 +501,11 @@ a.btn {
 .home-cta .btn {
   width: 100%;
   min-width: 0;
+}
+
+.btn__logo {
+  flex-shrink: 0;
+  margin-right: 0.6rem;
 }
 
 .home-copy {
@@ -797,6 +796,7 @@ a.btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 0.55rem;
   touch-action: manipulation;
   cursor: pointer;
   -webkit-tap-highlight-color: rgba(0, 255, 65, 0.2);
@@ -804,6 +804,10 @@ a.btn {
     background 0.2s ease,
     border-color 0.2s ease,
     box-shadow 0.2s ease;
+}
+
+.free-product-card__logo {
+  flex-shrink: 0;
 }
 
 .free-product-card__btn:focus-visible {
@@ -907,11 +911,7 @@ a.btn {
     padding: 0.65rem 0.75rem;
   }
 
-  .section-nav__brand {
-    width: 1.8rem;
-    height: 1.8rem;
-  }
-
+  .section-nav__brand,
   .section-nav__icon {
     width: 2.1rem;
     height: 2.1rem;

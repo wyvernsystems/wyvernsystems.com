@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { GitHubIcon, OpenVsxIcon, VSCodeIcon } from "./BrandIcons.jsx";
 
 /**
  * @param {{
@@ -59,6 +60,7 @@ export default function FreeProductCard({ product }) {
             rel="noopener noreferrer"
             target="_blank"
           >
+            <VSCodeIcon className="free-product-card__logo" size={18} />
             VS Marketplace
           </a>
           <a
@@ -67,6 +69,7 @@ export default function FreeProductCard({ product }) {
             rel="noopener noreferrer"
             target="_blank"
           >
+            <OpenVsxIcon className="free-product-card__logo" size={18} />
             Open VSX
           </a>
           <a
@@ -75,6 +78,7 @@ export default function FreeProductCard({ product }) {
             rel="noopener noreferrer"
             target="_blank"
           >
+            <GitHubIcon className="free-product-card__logo" size={18} />
             Source
           </a>
         </div>

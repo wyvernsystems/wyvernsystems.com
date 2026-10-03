@@ -41,6 +41,24 @@ describe("FreeProductCard", () => {
     expect(screen.getByRole("link", { name: "Source" })).toHaveAttribute("target", "_blank");
   });
 
+  it("shows each platform's logo in its official colors beside the link name when rendered", () => {
+    render(<FreeProductCard product={FREE_PRODUCTS[0]} />);
+
+    const cases = [
+      ["VS Marketplace", "#007ACC"],
+      ["Open VSX", "#c160ef"],
+      ["Source", "#FFFFFF"],
+    ];
+    for (const [name, brandFill] of cases) {
+      const link = screen.getByRole("link", { name });
+      expect(link).toHaveTextContent(name);
+      const logo = link.querySelector("svg");
+      expect(logo).toHaveAttribute("aria-hidden", "true");
+      expect(logo).toHaveClass("free-product-card__logo");
+      expect(logo.querySelector(`[fill="${brandFill}"]`)).toBeInTheDocument();
+    }
+  });
+
   it("copies the install command when requested", async () => {
     const product = FREE_PRODUCTS[0];
     const writeText = vi.fn().mockResolvedValue(undefined);

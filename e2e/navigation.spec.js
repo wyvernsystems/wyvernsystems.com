@@ -34,4 +34,65 @@ test.describe("top nav", () => {
       await expect(nav.getByRole("link", { name })).toHaveCount(0);
     }
   });
+
+  test("shows the social icons as bare logos without a site border or fill when loaded", async ({
+    page,
+  }) => {
+    await page.goto("/");
+    const nav = page.getByRole("navigation", { name: "Site and social" });
+
+    for (const name of ["LinkedIn", "GitHub", "Ron Picard"]) {
+      const link = nav.getByRole("link", { name });
+      const style = await link.evaluate((el) => {
+        const cs = getComputedStyle(el);
+        return {
+          border: cs.borderTopWidth,
+          background: cs.backgroundColor,
+          shadow: cs.boxShadow,
+        };
+      });
+      expect(style, name).toEqual({ border: "0px", background: "rgba(0, 0, 0, 0)", shadow: "none" });
+
+      const box = await link.boundingBox();
+      expect(box.width, name).toBeGreaterThanOrEqual(32);
+      expect(box.height, name).toBeGreaterThanOrEqual(32);
+    }
+  });
+
+  test("shows the wyvern brand mark bare and sized like the social icons when loaded", async ({
+    page,
+  }) => {
+    await page.goto("/");
+    const nav = page.getByRole("navigation", { name: "Site and social" });
+    const brand = nav.getByRole("link", { name: "Wyvern Systems home" });
+
+    const border = await brand.evaluate((el) => getComputedStyle(el).borderTopWidth);
+    expect(border).toBe("0px");
+
+    const brandBox = await brand.boundingBox();
+    const iconBox = await nav.getByRole("link", { name: "LinkedIn" }).boundingBox();
+    expect(brandBox.width).toBeCloseTo(iconBox.width, 0);
+    expect(brandBox.height).toBeCloseTo(iconBox.height, 0);
+
+    const mark = await brand.getByRole("img", { name: "Wyvern Systems" }).boundingBox();
+    const linkedInLogo = await nav.getByRole("link", { name: "LinkedIn" }).locator("svg").boundingBox();
+    expect(mark.height).toBeGreaterThanOrEqual(linkedInLogo.height);
+  });
+
+  test("renders the LinkedIn, GitHub, and Ron Picard logos at the same size when loaded", async ({
+    page,
+  }) => {
+    await page.goto("/");
+    const nav = page.getByRole("navigation", { name: "Site and social" });
+    const linkedIn = await nav.getByRole("link", { name: "LinkedIn" }).locator("svg").boundingBox();
+
+    const others = {
+      GitHub: nav.getByRole("link", { name: "GitHub" }).locator("svg"),
+      "Ron Picard": nav.getByRole("link", { name: "Ron Picard" }).locator("img"),
+    };
+    for (const [name, logo] of Object.entries(others)) {
+      const box = await logo.boundingBox();
+      expect(box.height, name).toBeCloseTo(linkedIn.height, 0);
+    }
+  });
 });

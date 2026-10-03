@@ -67,7 +67,7 @@ First-time Playwright setup: `npx playwright install`.
 | `npm run test:all` | Unit tests, then Playwright. |
 | `npm run build-og-image` | Regenerate Open Graph PNG assets. |
 | `npm run build-dragon-assets` | Regenerate wyvern / dragon image assets. |
-| `npm run build-wyvern-mark` | Regenerate the green wyvern mark (nav brand) and favicon set in **`public/`** from **`assets/brand/wyvern-mark-original.png`**. |
+| `npm run build-wyvern-mark` | Regenerate the orange wyvern nav logo and the round orange favicon set in **`public/`** from **`assets/brand/wyvern-mark-original.png`**. |
 
 Other `build-dragon-*` and `fill-dragon-holes` scripts are one-off asset maintenance; see **`scripts/`**.
 
