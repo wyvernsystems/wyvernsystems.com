@@ -60,11 +60,11 @@ describe("App", () => {
       expect(link).toHaveAttribute("rel", "noopener noreferrer");
       expect(link).toHaveAttribute("target", "_blank");
     }
-    expect(screen.getByRole("link", { name: /linkedin/i })).toHaveAttribute(
+    expect(within(cta).getByRole("link", { name: /linkedin/i })).toHaveAttribute(
       "href",
       "https://www.linkedin.com/in/ron-picard-8b7b3059",
     );
-    expect(screen.getByRole("link", { name: /ronpicard/i })).toHaveAttribute(
+    expect(within(cta).getByRole("link", { name: /ronpicard/i })).toHaveAttribute(
       "href",
       "https://ronpicard.com",
     );
@@ -80,6 +80,25 @@ describe("App", () => {
     const mark = within(brand).getByRole("img", { name: "Wyvern Systems" });
     expect(mark).toHaveAttribute("src", "/wyvern-mark.png");
     expect(mark).toHaveClass("section-nav__mark");
+  });
+
+  it("shows linkedin and ronpicard.com icons in the top nav instead of section links when rendered", () => {
+    render(<App />);
+
+    const nav = screen.getByRole("navigation", { name: "Site and social" });
+    const linkedin = within(nav).getByRole("link", { name: "LinkedIn" });
+    expect(linkedin).toHaveAttribute("href", "https://www.linkedin.com/in/ron-picard-8b7b3059");
+    const ron = within(nav).getByRole("link", { name: "Ron Picard" });
+    expect(ron).toHaveAttribute("href", "https://ronpicard.com");
+    for (const link of [linkedin, ron]) {
+      expect(link).toHaveAttribute("target", "_blank");
+      expect(link).toHaveAttribute("rel", "noopener noreferrer");
+    }
+    expect(ron.querySelector("img")).toHaveAttribute("src", "/ronpicard-mark.svg");
+
+    for (const name of ["Consulting", "Products", "Contact"]) {
+      expect(within(nav).queryByRole("link", { name })).not.toBeInTheDocument();
+    }
   });
 
   it("shows current year in copyright when rendered", () => {
@@ -117,17 +136,6 @@ describe("App", () => {
   it("styles ronpicard link as secondary ghost button when rendered", () => {
     render(<App />);
     expect(screen.getByRole("link", { name: /ronpicard/i })).toHaveClass("btn-ghost");
-  });
-
-  it("renders section jump links when mounted", () => {
-    render(<App />);
-    const nav = screen.getByRole("navigation", { name: "Page sections" });
-    expect(within(nav).getByRole("link", { name: "Consulting" })).toHaveAttribute(
-      "href",
-      "#consulting",
-    );
-    expect(within(nav).getByRole("link", { name: "Products" })).toHaveAttribute("href", "#products");
-    expect(within(nav).getByRole("link", { name: "Contact" })).toHaveAttribute("href", "#contact");
   });
 
   it("renders matching outlined hero calls to action", () => {

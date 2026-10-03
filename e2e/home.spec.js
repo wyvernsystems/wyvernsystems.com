@@ -23,7 +23,7 @@ test.describe("homepage", () => {
   test("shows the wyvern mark in the section nav when loaded", async ({ page }) => {
     await page.goto("/");
 
-    const nav = page.getByRole("navigation", { name: "Page sections" });
+    const nav = page.getByRole("navigation", { name: "Site and social" });
     const mark = nav.getByRole("link", { name: "Wyvern Systems home" }).getByRole("img");
     await expect(mark).toBeVisible();
     await expect(mark).toHaveAttribute("src", "/wyvern-mark.png");
@@ -33,7 +33,8 @@ test.describe("homepage", () => {
   test("opens external ctas in a new tab when rendered", async ({ page }) => {
     await page.goto("/");
 
-    const linkedin = page.getByRole("link", { name: /linkedin/i });
+    const contact = page.locator("#contact");
+    const linkedin = contact.getByRole("link", { name: /linkedin/i });
     await expect(linkedin).toHaveAttribute(
       "href",
       "https://www.linkedin.com/in/ron-picard-8b7b3059",
@@ -41,7 +42,7 @@ test.describe("homepage", () => {
     await expect(linkedin).toHaveAttribute("target", "_blank");
     await expect(linkedin).toHaveAttribute("rel", "noopener noreferrer");
 
-    const portfolio = page.getByRole("link", { name: /ronpicard/i });
+    const portfolio = contact.getByRole("link", { name: /ronpicard/i });
     await expect(portfolio).toHaveAttribute("href", "https://ronpicard.com");
     await expect(portfolio).toHaveAttribute("target", "_blank");
     await expect(portfolio).toHaveAttribute("rel", "noopener noreferrer");
@@ -90,7 +91,7 @@ test.describe("homepage", () => {
 
     await expect(page.getByRole("heading", { level: 1, name: "Wyvern Systems" })).toBeVisible();
     await expect(page.getByRole("heading", { name: "Auto Color" })).toBeVisible();
-    await expect(page.getByRole("navigation", { name: "Page sections" })).toBeVisible();
+    await expect(page.getByRole("navigation", { name: "Site and social" })).toBeVisible();
   });
 
   test("shows the full hero lead immediately when reduced motion preferred", async ({ page }) => {

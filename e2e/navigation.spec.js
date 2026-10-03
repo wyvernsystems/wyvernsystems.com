@@ -1,22 +1,31 @@
 import { expect, test } from "@playwright/test";
 
-test.describe("section navigation", () => {
-  test("jumps to consulting products and contact when section links clicked", async ({
+test.describe("top nav", () => {
+  test("shows linkedin and ronpicard.com icons that open in a new tab when loaded", async ({
     page,
   }) => {
     await page.goto("/");
-    const nav = page.getByRole("navigation", { name: "Page sections" });
+    const nav = page.getByRole("navigation", { name: "Site and social" });
 
-    await nav.getByRole("link", { name: "Consulting" }).click();
-    await expect(page).toHaveURL(/#consulting$/);
-    await expect(page.locator("#consulting")).toBeInViewport();
+    const linkedin = nav.getByRole("link", { name: "LinkedIn" });
+    await expect(linkedin).toBeVisible();
+    await expect(linkedin).toHaveAttribute(
+      "href",
+      "https://www.linkedin.com/in/ron-picard-8b7b3059",
+    );
+    await expect(linkedin).toHaveAttribute("target", "_blank");
+    await expect(linkedin).toHaveAttribute("rel", "noopener noreferrer");
 
-    await nav.getByRole("link", { name: "Products" }).click();
-    await expect(page).toHaveURL(/#products$/);
-    await expect(page.locator("#products")).toBeInViewport();
+    const ron = nav.getByRole("link", { name: "Ron Picard" });
+    await expect(ron).toBeVisible();
+    await expect(ron).toHaveAttribute("href", "https://ronpicard.com");
+    await expect(ron).toHaveAttribute("target", "_blank");
+    await expect(ron).toHaveAttribute("rel", "noopener noreferrer");
+    await expect(ron.locator("img")).toHaveJSProperty("complete", true);
+    expect(await ron.locator("img").evaluate((img) => img.naturalWidth)).toBeGreaterThan(0);
 
-    await nav.getByRole("link", { name: "Contact" }).click();
-    await expect(page).toHaveURL(/#contact$/);
-    await expect(page.locator("#contact")).toBeInViewport();
+    for (const name of ["Consulting", "Products", "Contact"]) {
+      await expect(nav.getByRole("link", { name })).toHaveCount(0);
+    }
   });
 });
