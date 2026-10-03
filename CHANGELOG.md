@@ -29,6 +29,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- The link-preview image now shows the current homepage hero: the orange wyvern logo, social icons, smaller title, larger byline, and the "Contact Me", "Services", and "Products" buttons.
 - The consulting and free product cards now share one bright green accent, replacing the lime Educational Consulting accent and the separate teal and violet product bars, and the consulting cards no longer show icons.
 - Each free product's "Source" button is now "Releases" and opens the extension's latest GitHub release.
 - The Technical Consulting card now reads "AI, software, hardware, full system design, aviation, aircraft design, flight test, and more."
