@@ -19,4 +19,8 @@ describe("FREE_PRODUCTS", () => {
       expect(product.iconUrl).toMatch(/^https:\/\/WyvernSystemsLLC\.gallerycdn\.vsassets\.io\//);
     }
   });
+
+  it("lists AI Rulebook first and Auto Color second when imported", () => {
+    expect(FREE_PRODUCTS.map((product) => product.id)).toEqual(["ai-rulebook", "auto-color"]);
+  });
 });

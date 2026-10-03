@@ -6,18 +6,45 @@ test.describe("homepage", () => {
 
     await expect(page).toHaveTitle(/Wyvern Systems/);
     await expect(page.getByRole("heading", { level: 1, name: "Wyvern Systems" })).toBeVisible();
-    await expect(page.getByText("Wyvern Systems LLC").first()).toBeVisible();
+    await expect(page.locator("header.hero")).not.toContainText("Wyvern Systems LLC");
+    await expect(page.locator("header.hero .hero-lead")).toHaveCount(0);
     await expect(page.getByRole("heading", { name: /technical consulting/i })).toBeVisible();
     await expect(page.getByRole("heading", { name: /educational consulting/i })).toBeVisible();
     await expect(page.getByRole("heading", { name: "Free products" })).toBeVisible();
     await expect(page.getByRole("heading", { name: "Auto Color" })).toBeVisible();
     await expect(page.getByRole("heading", { name: "AI Rulebook" })).toBeVisible();
     await expect(page.getByRole("heading", { name: "Contact" })).toBeVisible();
-    await expect(page.getByRole("link", { name: "Explore products" })).toHaveAttribute(
+    await expect(page.getByRole("link", { name: "Products", exact: true })).toHaveAttribute(
       "href",
       "#products",
     );
     await expect(page.getByText(`© ${new Date().getFullYear()} Wyvern Systems LLC`)).toBeVisible();
+  });
+
+  test("shows the hero byline larger than the body copy when loaded", async ({ page }) => {
+    await page.goto("/");
+    const fontSize = (locator) =>
+      locator.evaluate((el) => Number.parseFloat(getComputedStyle(el).fontSize));
+
+    const byline = await fontSize(page.locator(".hero-byline"));
+    const body = await fontSize(page.locator(".offer-card__desc").first());
+    expect(byline).toBeGreaterThanOrEqual(16.8);
+    expect(byline).toBeGreaterThan(body);
+  });
+
+  test("sizes the hero title to fit desktop and phone widths when loaded", async ({ page }) => {
+    const titleSize = () =>
+      page
+        .getByRole("heading", { level: 1, name: "Wyvern Systems" })
+        .evaluate((el) => Number.parseFloat(getComputedStyle(el).fontSize));
+
+    await page.setViewportSize({ width: 1280, height: 800 });
+    await page.goto("/");
+    expect(await titleSize()).toBeLessThanOrEqual(68);
+
+    await page.setViewportSize({ width: 375, height: 812 });
+    await page.goto("/");
+    expect(await titleSize()).toBeLessThanOrEqual(38);
   });
 
   test("shows the wyvern mark in the section nav when loaded", async ({ page }) => {
@@ -51,33 +78,33 @@ test.describe("homepage", () => {
 
     const marketplace = page.getByRole("link", { name: "VS Marketplace" });
     await expect(marketplace).toHaveCount(2);
-    await expect(marketplace.nth(0)).toHaveAttribute(
+    await expect(marketplace.nth(1)).toHaveAttribute(
       "href",
       "https://marketplace.visualstudio.com/items?itemName=WyvernSystemsLLC.auto-color",
     );
-    await expect(marketplace.nth(1)).toHaveAttribute(
+    await expect(marketplace.nth(0)).toHaveAttribute(
       "href",
       "https://marketplace.visualstudio.com/items?itemName=WyvernSystemsLLC.ai-rulebook",
     );
 
     const openVsx = page.getByRole("link", { name: "Open VSX" });
     await expect(openVsx).toHaveCount(2);
-    await expect(openVsx.nth(0)).toHaveAttribute(
+    await expect(openVsx.nth(1)).toHaveAttribute(
       "href",
       "https://open-vsx.org/extension/WyvernSystemsLLC/auto-color",
     );
-    await expect(openVsx.nth(1)).toHaveAttribute(
+    await expect(openVsx.nth(0)).toHaveAttribute(
       "href",
       "https://open-vsx.org/extension/WyvernSystemsLLC/ai-rulebook",
     );
 
     const source = page.getByRole("link", { name: "Source" });
     await expect(source).toHaveCount(2);
-    await expect(source.nth(0)).toHaveAttribute(
+    await expect(source.nth(1)).toHaveAttribute(
       "href",
       "https://github.com/wyvernsystems/auto-color-vscode-extension",
     );
-    await expect(source.nth(1)).toHaveAttribute(
+    await expect(source.nth(0)).toHaveAttribute(
       "href",
       "https://github.com/wyvernsystems/ai-rulebook-vscode-extension",
     );
@@ -90,14 +117,5 @@ test.describe("homepage", () => {
     await expect(page.getByRole("heading", { level: 1, name: "Wyvern Systems" })).toBeVisible();
     await expect(page.getByRole("heading", { name: "Auto Color" })).toBeVisible();
     await expect(page.getByRole("navigation", { name: "Site and social" })).toBeVisible();
-  });
-
-  test("shows the full hero lead immediately when reduced motion preferred", async ({ page }) => {
-    await page.emulateMedia({ reducedMotion: "reduce" });
-    await page.goto("/");
-
-    await expect(
-      page.getByText("Solving your hardest technical problems and delivering real results."),
-    ).toBeVisible();
   });
 });

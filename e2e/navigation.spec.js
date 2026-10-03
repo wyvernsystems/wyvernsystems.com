@@ -79,20 +79,16 @@ test.describe("top nav", () => {
     expect(mark.height).toBeGreaterThanOrEqual(linkedInLogo.height);
   });
 
-  test("renders the LinkedIn, GitHub, and Ron Picard logos at the same size when loaded", async ({
-    page,
-  }) => {
+  test("renders the social logos at a matching optical size when loaded", async ({ page }) => {
     await page.goto("/");
     const nav = page.getByRole("navigation", { name: "Site and social" });
     const linkedIn = await nav.getByRole("link", { name: "LinkedIn" }).locator("svg").boundingBox();
+    const gitHub = await nav.getByRole("link", { name: "GitHub" }).locator("svg").boundingBox();
+    expect(gitHub.height).toBeCloseTo(linkedIn.height, 0);
 
-    const others = {
-      GitHub: nav.getByRole("link", { name: "GitHub" }).locator("svg"),
-      "Ron Picard": nav.getByRole("link", { name: "Ron Picard" }).locator("img"),
-    };
-    for (const [name, logo] of Object.entries(others)) {
-      const box = await logo.boundingBox();
-      expect(box.height, name).toBeCloseTo(linkedIn.height, 0);
-    }
+    // The solid R carries more visual weight than the LinkedIn square or GitHub circle, so it sits smaller.
+    const ronPicard = await nav.getByRole("link", { name: "Ron Picard" }).locator("img").boundingBox();
+    expect(ronPicard.height / linkedIn.height).toBeGreaterThanOrEqual(0.75);
+    expect(ronPicard.height / linkedIn.height).toBeLessThanOrEqual(0.85);
   });
 });

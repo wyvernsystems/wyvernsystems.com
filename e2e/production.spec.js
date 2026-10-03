@@ -62,7 +62,7 @@ test.describe("production build", () => {
     const home = await request.get("/");
     expect(home.ok()).toBe(true);
     const html = await home.text();
-    expect(html).toContain("Solving your hardest technical problems and delivering real results.");
+    expect(html).toContain("Independent technical consulting by");
     expect(html).toContain("Wyvern Systems LLC");
 
     const notFound = await request.get("/404.html");

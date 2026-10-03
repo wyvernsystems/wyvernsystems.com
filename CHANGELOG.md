@@ -29,6 +29,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- The Technical Consulting card now reads "AI, software, hardware, full system design, aviation, aircraft design, flight test, and more."
+- The hero no longer repeats "Wyvern Systems LLC" above the title or shows the typed "Solving your hardest technical problems…" line, its title is a little smaller, its byline is larger, and its buttons now read "Contact Me", "Services", and "Products" instead of "Start a conversation", "Explore services", and "Explore products".
+- The free products list AI Rulebook first, then Auto Color.
 - Removed the "Capabilities" and "Open tools" labels above the Consulting and Free products headings.
 - The contact section now has a single "Message me on LinkedIn" button with the LinkedIn logo; the ronpicard.com button was removed (ronpicard.com stays linked from the top nav).
 - The free product buttons now show the VS Code, Open VSX, and GitHub logos in their official colors beside the link names.
@@ -42,7 +45,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Homepage order: consulting, then What I cover / CTAs, then free products; removed product card image placeholders and marketplace lead line.
 - UI pass: section headings, consulting blurbs, Marketplace icons, stronger content panel scrim, consistent outlined CTAs, product accent borders, footer at bottom after free products.
 - Responsive scaling: fluid type/spacing, viewport-based gutters and content max-width, scroll-friendly layout on small and tall screens.
-- Visual polish: consulting tile icons and accents, sticky section nav, terminal-style footer panel, typewriter hero lead, and wyvern scroll parallax (respects reduced motion).
+- Visual polish: consulting tile icons and accents, sticky section nav, terminal-style footer panel, and wyvern scroll parallax (respects reduced motion).
 - Open Graph / Twitter card image is now a screenshot of the homepage hero (nav, title, tagline, and calls to action) instead of a composed logo card.
-- Vitest unit tests for CSP helpers, `App`, `MatrixRain`, `WyvernBackdrop`, `HeroLead`, `FreeProductCard`, `OfferIcon`, `FREE_PRODUCTS`, and `useReveal`.
+- Vitest unit tests for CSP helpers, `App`, `MatrixRain`, `WyvernBackdrop`, `FreeProductCard`, `OfferIcon`, `FREE_PRODUCTS`, and `useReveal`.
 - `npm test`, `npm run test:watch`, `npm run test:e2e`, and `npm run test:all` scripts; CI and deploy run unit and Playwright tests.

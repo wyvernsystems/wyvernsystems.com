@@ -7,12 +7,13 @@ describe("App", () => {
     render(<App />);
 
     expect(screen.getByRole("heading", { level: 1, name: "Wyvern Systems" })).toBeInTheDocument();
-    expect(screen.getByText("Wyvern Systems LLC")).toBeInTheDocument();
+    expect(screen.getByRole("banner")).not.toHaveTextContent("Wyvern Systems LLC");
+    expect(screen.getByRole("banner").querySelector(".hero-lead")).toBeNull();
     expect(screen.getByRole("heading", { name: /technical/i })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: /educational/i })).toBeInTheDocument();
     expect(
       screen.getByText(
-        "Systems, AI, autonomy, software, hardware, robotics, aviation, aircraft design, flight test, and more.",
+        "AI, software, hardware, full system design, aviation, aircraft design, flight test, and more.",
       ),
     ).toBeInTheDocument();
     expect(screen.getByText(/Lessons, workshops/i)).toBeInTheDocument();
@@ -155,11 +156,16 @@ describe("App", () => {
     const links = within(heroCta).getAllByRole("link");
 
     expect(links).toHaveLength(3);
-    expect(within(heroCta).getByRole("link", { name: "Explore services" })).toHaveAttribute(
+    expect(within(heroCta).queryByRole("link", { name: /start a conversation/i })).toBeNull();
+    const contact = within(heroCta).getByRole("link", { name: "Contact Me" });
+    expect(contact).toHaveAttribute("href", "https://www.linkedin.com/in/ron-picard-8b7b3059");
+    expect(contact).toHaveAttribute("target", "_blank");
+    expect(contact).toHaveAttribute("rel", "noopener noreferrer");
+    expect(within(heroCta).getByRole("link", { name: "Services" })).toHaveAttribute(
       "href",
       "#consulting",
     );
-    expect(within(heroCta).getByRole("link", { name: "Explore products" })).toHaveAttribute(
+    expect(within(heroCta).getByRole("link", { name: "Products" })).toHaveAttribute(
       "href",
       "#products",
     );

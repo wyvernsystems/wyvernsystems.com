@@ -1,7 +1,6 @@
 import DecorativeBoundary from "./components/DecorativeBoundary.jsx";
 import FreeProductCard from "./components/FreeProductCard.jsx";
 import { GitHubIcon, LinkedInIcon } from "./components/BrandIcons.jsx";
-import HeroLead from "./components/HeroLead.jsx";
 import MatrixRain from "./components/MatrixRain.jsx";
 import OfferIcon from "./components/OfferIcon.jsx";
 import WyvernBackdrop from "./components/WyvernBackdrop.jsx";
@@ -16,7 +15,7 @@ const CONSULTING_OFFERS = [
     id: "technical",
     title: ["Technical", "Consulting"],
     description:
-      "Systems, AI, autonomy, software, hardware, robotics, aviation, aircraft design, flight test, and more.",
+      "AI, software, hardware, full system design, aviation, aircraft design, flight test, and more.",
   },
   {
     id: "educational",
@@ -85,8 +84,8 @@ export default function App() {
                   className="section-nav__icon-img"
                   src="/ronpicard-mark.svg"
                   alt=""
-                  width="28"
-                  height="26"
+                  width="22"
+                  height="21"
                   decoding="async"
                 />
               </a>
@@ -94,12 +93,10 @@ export default function App() {
           </nav>
 
           <header className="hero">
-            <p className="hero-llc">Wyvern Systems LLC</p>
             <h1 className="hero-title">Wyvern Systems</h1>
             <p className="hero-byline">
               Independent technical consulting by <span className="hero-name">Ron Picard</span>
             </p>
-            <HeroLead />
             <div className="hero-cta">
               <a
                 className="btn btn-ghost"
@@ -107,13 +104,13 @@ export default function App() {
                 rel="noopener noreferrer"
                 target="_blank"
               >
-                Start a conversation
+                Contact Me
               </a>
               <a className="btn btn-ghost" href="#consulting">
-                Explore services
+                Services
               </a>
               <a className="btn btn-ghost" href="#products">
-                Explore products
+                Products
               </a>
             </div>
           </header>

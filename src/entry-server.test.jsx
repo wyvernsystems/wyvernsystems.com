@@ -8,7 +8,7 @@ describe("entry-server", () => {
 
     const html = render();
 
-    expect(html).toContain("Solving your hardest technical problems and delivering real results.");
+    expect(html).toContain("Independent technical consulting by");
     expect(html).toContain("Wyvern Systems LLC");
     expect(html).toContain("Technical");
     expect(html).toContain("Educational");
