@@ -30,6 +30,24 @@ test.describe("production build", () => {
     expect(urls.some((url) => url.includes("fonts.gstatic.com"))).toBe(false);
   });
 
+  test("links and serves the wyvern favicon set when requested", async ({ page, request }) => {
+    await page.goto("/");
+
+    await expect(page.locator('link[rel="icon"][href="/favicon.ico"]')).toHaveCount(1);
+    await expect(page.locator('link[rel="icon"][href="/favicon-32.png"]')).toHaveCount(1);
+    await expect(page.locator('link[rel="icon"][href="/favicon-192.png"]')).toHaveCount(1);
+    await expect(page.locator('link[rel="apple-touch-icon"]')).toHaveAttribute(
+      "href",
+      "/apple-touch-icon.png",
+    );
+
+    for (const path of ["/favicon.ico", "/favicon-32.png", "/favicon-192.png", "/apple-touch-icon.png", "/wyvern-mark.png"]) {
+      const res = await request.get(path);
+      expect(res.ok(), path).toBe(true);
+      expect(res.headers()["content-type"], path).toMatch(/^image\//);
+    }
+  });
+
   test("serves security.txt and CNAME when requested", async ({ request }) => {
     const security = await request.get("/.well-known/security.txt");
     expect(security.ok()).toBe(true);

@@ -50,7 +50,14 @@ export default function App() {
         <div className="home-inner">
           <nav className="section-nav" aria-label="Page sections">
             <a className="section-nav__brand" href="#top" aria-label="Wyvern Systems home">
-              WS
+              <img
+                className="section-nav__mark"
+                src="/wyvern-mark.png"
+                alt="Wyvern Systems"
+                width="512"
+                height="512"
+                decoding="async"
+              />
             </a>
             <div className="section-nav__links">
               {SECTION_LINKS.map((link) => (

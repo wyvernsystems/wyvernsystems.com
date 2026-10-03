@@ -29,6 +29,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- The section nav brand is now the green wyvern mark instead of the "WS" monogram, and the same mark is the browser tab, bookmark, and home-screen icon (replacing the generic chevron).
 - The company name now reads "Wyvern Systems LLC" (no comma) everywhere, matching the registered legal name.
 - The search and link-preview description now describes the company instead of the site's visual theme.
 - Expanded the technical consulting summary, simplified the contact section and non-interactive hover states, added hero links for services and products, and standardized non-navigation buttons on the outlined Source style.

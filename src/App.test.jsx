@@ -70,6 +70,18 @@ describe("App", () => {
     );
   });
 
+  it("shows the wyvern mark as the nav brand when rendered", () => {
+    render(<App />);
+
+    const brand = screen.getByRole("link", { name: "Wyvern Systems home" });
+    expect(brand).toHaveAttribute("href", "#top");
+    expect(brand).not.toHaveTextContent("WS");
+
+    const mark = within(brand).getByRole("img", { name: "Wyvern Systems" });
+    expect(mark).toHaveAttribute("src", "/wyvern-mark.png");
+    expect(mark).toHaveClass("section-nav__mark");
+  });
+
   it("shows current year in copyright when rendered", () => {
     const { container } = render(<App />);
     const copyBlocks = container.querySelectorAll(".site-footer .home-copy");

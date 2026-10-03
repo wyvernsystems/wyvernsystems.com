@@ -20,7 +20,8 @@
     "fill-dragon-holes": "node scripts/fill-dragon-holes.mjs",
     "remove-dragon-rock": "node scripts/remove-dragon-rock.mjs",
     "build-dragon-icon": "node scripts/build-dragon-assets.mjs",
-    "build-dragon-assets": "node scripts/build-dragon-assets.mjs"
+    "build-dragon-assets": "node scripts/build-dragon-assets.mjs",
+    "build-wyvern-mark": "node scripts/build-wyvern-mark.mjs"
   },
   "dependencies": {
     "@fontsource/cinzel": "^5.3.0",

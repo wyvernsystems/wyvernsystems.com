@@ -20,6 +20,16 @@ test.describe("homepage", () => {
     await expect(page.getByText(`© ${new Date().getFullYear()} Wyvern Systems LLC`)).toBeVisible();
   });
 
+  test("shows the wyvern mark in the section nav when loaded", async ({ page }) => {
+    await page.goto("/");
+
+    const nav = page.getByRole("navigation", { name: "Page sections" });
+    const mark = nav.getByRole("link", { name: "Wyvern Systems home" }).getByRole("img");
+    await expect(mark).toBeVisible();
+    await expect(mark).toHaveAttribute("src", "/wyvern-mark.png");
+    await expect(nav).not.toContainText("WS");
+  });
+
   test("opens external ctas in a new tab when rendered", async ({ page }) => {
     await page.goto("/");
 
