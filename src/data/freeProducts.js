@@ -4,7 +4,6 @@ export const FREE_PRODUCTS = [
     id: "ai-rulebook",
     title: "AI Rulebook",
     badge: "Free · VS Code",
-    accent: "violet",
     description:
       "Curated Cursor rules under .cursor/rules/ai-rules/ with Plan, Build, and Test modes.",
     iconUrl:
@@ -12,14 +11,13 @@ export const FREE_PRODUCTS = [
     marketplaceUrl:
       "https://marketplace.visualstudio.com/items?itemName=WyvernSystemsLLC.ai-rulebook",
     openVsxUrl: "https://open-vsx.org/extension/WyvernSystemsLLC/ai-rulebook",
-    repoUrl: "https://github.com/wyvernsystems/ai-rulebook-vscode-extension",
+    releasesUrl: "https://github.com/wyvernsystems/ai-rulebook-vscode-extension/releases/latest",
     installId: "WyvernSystemsLLC.ai-rulebook",
   },
   {
     id: "auto-color",
     title: "Auto Color",
     badge: "Free · VS Code",
-    accent: "teal",
     description:
       "Per-workspace title, activity, and status bar tints—golden-ratio palettes, computed locally.",
     iconUrl:
@@ -27,7 +25,7 @@ export const FREE_PRODUCTS = [
     marketplaceUrl:
       "https://marketplace.visualstudio.com/items?itemName=WyvernSystemsLLC.auto-color",
     openVsxUrl: "https://open-vsx.org/extension/WyvernSystemsLLC/auto-color",
-    repoUrl: "https://github.com/wyvernsystems/auto-color-vscode-extension",
+    releasesUrl: "https://github.com/wyvernsystems/auto-color-vscode-extension/releases/latest",
     installId: "WyvernSystemsLLC.auto-color",
   },
 ];

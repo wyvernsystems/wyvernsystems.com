@@ -29,6 +29,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- The consulting and free product cards now share one bright green accent, replacing the lime Educational Consulting accent and the separate teal and violet product bars, and the consulting cards no longer show icons.
+- Each free product's "Source" button is now "Releases" and opens the extension's latest GitHub release.
 - The Technical Consulting card now reads "AI, software, hardware, full system design, aviation, aircraft design, flight test, and more."
 - The hero no longer repeats "Wyvern Systems LLC" above the title or shows the typed "Solving your hardest technical problems…" line, its title is a little smaller, its byline is larger, and its buttons now read "Contact Me", "Services", and "Products" instead of "Start a conversation", "Explore services", and "Explore products".
 - The free products list AI Rulebook first, then Auto Color.
@@ -45,7 +47,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Homepage order: consulting, then What I cover / CTAs, then free products; removed product card image placeholders and marketplace lead line.
 - UI pass: section headings, consulting blurbs, Marketplace icons, stronger content panel scrim, consistent outlined CTAs, product accent borders, footer at bottom after free products.
 - Responsive scaling: fluid type/spacing, viewport-based gutters and content max-width, scroll-friendly layout on small and tall screens.
-- Visual polish: consulting tile icons and accents, sticky section nav, terminal-style footer panel, and wyvern scroll parallax (respects reduced motion).
+- Visual polish: consulting tile accents, sticky section nav, terminal-style footer panel, and wyvern scroll parallax (respects reduced motion).
 - Open Graph / Twitter card image is now a screenshot of the homepage hero (nav, title, tagline, and calls to action) instead of a composed logo card.
-- Vitest unit tests for CSP helpers, `App`, `MatrixRain`, `WyvernBackdrop`, `FreeProductCard`, `OfferIcon`, `FREE_PRODUCTS`, and `useReveal`.
+- Vitest unit tests for CSP helpers, `App`, `MatrixRain`, `WyvernBackdrop`, `FreeProductCard`, `FREE_PRODUCTS`, and `useReveal`.
 - `npm test`, `npm run test:watch`, `npm run test:e2e`, and `npm run test:all` scripts; CI and deploy run unit and Playwright tests.

@@ -2,7 +2,6 @@ import DecorativeBoundary from "./components/DecorativeBoundary.jsx";
 import FreeProductCard from "./components/FreeProductCard.jsx";
 import { GitHubIcon, LinkedInIcon } from "./components/BrandIcons.jsx";
 import MatrixRain from "./components/MatrixRain.jsx";
-import OfferIcon from "./components/OfferIcon.jsx";
 import WyvernBackdrop from "./components/WyvernBackdrop.jsx";
 import { FREE_PRODUCTS } from "./data/freeProducts.js";
 
@@ -130,7 +129,6 @@ export default function App() {
             <div className="offers-grid">
               {CONSULTING_OFFERS.map((offer) => (
                 <article key={offer.id} className={`offer-card offer-card--${offer.id}`}>
-                  <OfferIcon type={offer.id} />
                   <h3>
                     {offer.title[0]}
                     <br />

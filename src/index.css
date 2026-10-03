@@ -563,24 +563,8 @@ a.btn {
   border-top-color: var(--matrix);
 }
 
-.offer-card--technical .offer-card__icon {
-  color: var(--matrix);
-}
-
 .offer-card--educational {
-  border-top-color: rgba(200, 255, 140, 0.75);
-}
-
-.offer-card--educational .offer-card__icon {
-  color: rgba(200, 255, 140, 0.9);
-}
-
-.offer-card__icon {
-  display: block;
-  width: 2rem;
-  height: 2rem;
-  margin-bottom: 1rem;
-  opacity: 0.92;
+  border-top-color: var(--matrix);
 }
 
 .offer-card::before {
@@ -650,18 +634,11 @@ a.btn {
   border-radius: 10px;
   border: 1px solid var(--border);
   border-left-width: 3px;
+  border-left-color: var(--matrix);
   background: linear-gradient(145deg, rgba(0, 13, 6, 0.82), rgba(0, 5, 2, 0.58));
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
   overflow: hidden;
-}
-
-.free-product-card--teal {
-  border-left-color: rgba(0, 255, 180, 0.55);
-}
-
-.free-product-card--violet {
-  border-left-color: rgba(160, 120, 255, 0.55);
 }
 
 .free-product-card__body {

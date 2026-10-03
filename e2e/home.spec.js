@@ -73,7 +73,26 @@ test.describe("homepage", () => {
     await expect(contact.getByRole("link", { name: /ronpicard/i })).toHaveCount(0);
   });
 
-  test("links free products to marketplace open vsx and source when rendered", async ({ page }) => {
+  test("gives every consulting and product card the same matrix green accent and no consulting icons when rendered", async ({
+    page,
+  }) => {
+    await page.goto("/");
+    const matrixGreen = "rgb(0, 255, 65)";
+
+    const consultingBars = await page
+      .locator(".offer-card")
+      .evaluateAll((cards) => cards.map((card) => getComputedStyle(card).borderTopColor));
+    expect(consultingBars).toEqual([matrixGreen, matrixGreen]);
+
+    await expect(page.locator(".offer-card svg")).toHaveCount(0);
+
+    const productBars = await page
+      .locator(".free-product-card")
+      .evaluateAll((cards) => cards.map((card) => getComputedStyle(card).borderLeftColor));
+    expect(productBars).toEqual([matrixGreen, matrixGreen]);
+  });
+
+  test("links free products to marketplace open vsx and latest releases when rendered", async ({ page }) => {
     await page.goto("/");
 
     const marketplace = page.getByRole("link", { name: "VS Marketplace" });
@@ -98,15 +117,15 @@ test.describe("homepage", () => {
       "https://open-vsx.org/extension/WyvernSystemsLLC/ai-rulebook",
     );
 
-    const source = page.getByRole("link", { name: "Source" });
-    await expect(source).toHaveCount(2);
-    await expect(source.nth(1)).toHaveAttribute(
+    const releases = page.getByRole("link", { name: "Releases" });
+    await expect(releases).toHaveCount(2);
+    await expect(releases.nth(1)).toHaveAttribute(
       "href",
-      "https://github.com/wyvernsystems/auto-color-vscode-extension",
+      "https://github.com/wyvernsystems/auto-color-vscode-extension/releases/latest",
     );
-    await expect(source.nth(0)).toHaveAttribute(
+    await expect(releases.nth(0)).toHaveAttribute(
       "href",
-      "https://github.com/wyvernsystems/ai-rulebook-vscode-extension",
+      "https://github.com/wyvernsystems/ai-rulebook-vscode-extension/releases/latest",
     );
   });
 

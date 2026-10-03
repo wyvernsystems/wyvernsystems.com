@@ -4,7 +4,7 @@ import App from "./App.jsx";
 
 describe("App", () => {
   it("renders hero and offer copy when mounted", () => {
-    render(<App />);
+    const { container } = render(<App />);
 
     expect(screen.getByRole("heading", { level: 1, name: "Wyvern Systems" })).toBeInTheDocument();
     expect(screen.getByRole("banner")).not.toHaveTextContent("Wyvern Systems LLC");
@@ -17,6 +17,7 @@ describe("App", () => {
       ),
     ).toBeInTheDocument();
     expect(screen.getByText(/Lessons, workshops/i)).toBeInTheDocument();
+    expect(container.querySelectorAll(".offer-card svg")).toHaveLength(0);
     expect(screen.getByRole("heading", { name: "Contact" })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "Auto Color" })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "AI Rulebook" })).toBeInTheDocument();
@@ -181,11 +182,15 @@ describe("App", () => {
     expect(container.querySelector("#contact")).toBeInTheDocument();
   });
 
-  it("links product source repos when rendered", () => {
+  it("links each product's latest release when rendered", () => {
     render(<App />);
-    const hrefs = screen.getAllByRole("link", { name: "Source" }).map((a) => a.getAttribute("href"));
-    expect(hrefs).toContain("https://github.com/wyvernsystems/auto-color-vscode-extension");
-    expect(hrefs).toContain("https://github.com/wyvernsystems/ai-rulebook-vscode-extension");
+    const hrefs = screen.getAllByRole("link", { name: "Releases" }).map((a) => a.getAttribute("href"));
+    expect(hrefs).toContain(
+      "https://github.com/wyvernsystems/auto-color-vscode-extension/releases/latest",
+    );
+    expect(hrefs).toContain(
+      "https://github.com/wyvernsystems/ai-rulebook-vscode-extension/releases/latest",
+    );
   });
 });
 

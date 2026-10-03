@@ -4,7 +4,7 @@ import { FREE_PRODUCTS } from "../data/freeProducts.js";
 import FreeProductCard from "./FreeProductCard.jsx";
 
 describe("FreeProductCard", () => {
-  it("renders marketplace and source links with noopener when product provided", () => {
+  it("renders marketplace and releases links with noopener when product provided", () => {
     const product = FREE_PRODUCTS[0];
     const { container } = render(<FreeProductCard product={product} />);
 
@@ -22,23 +22,24 @@ describe("FreeProductCard", () => {
     expect(openVsx).toHaveAttribute("rel", "noopener noreferrer");
     expect(openVsx).toHaveClass("free-product-card__btn--ghost");
 
-    const source = screen.getByRole("link", { name: "Source" });
-    expect(source).toHaveAttribute("href", product.repoUrl);
-    expect(source).toHaveAttribute("rel", "noopener noreferrer");
-    expect(source).toHaveClass("free-product-card__btn--ghost");
+    const releases = screen.getByRole("link", { name: "Releases" });
+    expect(releases).toHaveAttribute("href", product.releasesUrl);
+    expect(releases).toHaveAttribute("rel", "noopener noreferrer");
+    expect(releases).toHaveClass("free-product-card__btn--ghost");
+    expect(screen.queryByRole("link", { name: "Source" })).toBeNull();
 
     expect(screen.getByText(`ext install ${product.installId}`)).toBeInTheDocument();
   });
 
-  it("applies accent class badge and blank targets when product provided", () => {
+  it("shows the badge and blank targets when product provided", () => {
     const product = FREE_PRODUCTS[1];
     const { container } = render(<FreeProductCard product={product} />);
 
-    expect(container.querySelector("article")).toHaveClass(`free-product-card--${product.accent}`);
+    expect(container.querySelector("article")).toHaveClass("free-product-card");
     expect(screen.getByText(product.badge)).toBeInTheDocument();
     expect(screen.getByRole("link", { name: "VS Marketplace" })).toHaveAttribute("target", "_blank");
     expect(screen.getByRole("link", { name: "Open VSX" })).toHaveAttribute("target", "_blank");
-    expect(screen.getByRole("link", { name: "Source" })).toHaveAttribute("target", "_blank");
+    expect(screen.getByRole("link", { name: "Releases" })).toHaveAttribute("target", "_blank");
   });
 
   it("shows each platform's logo in its official colors beside the link name when rendered", () => {
@@ -47,7 +48,7 @@ describe("FreeProductCard", () => {
     const cases = [
       ["VS Marketplace", "#007ACC"],
       ["Open VSX", "#c160ef"],
-      ["Source", "#FFFFFF"],
+      ["Releases", "#FFFFFF"],
     ];
     for (const [name, brandFill] of cases) {
       const link = screen.getByRole("link", { name });

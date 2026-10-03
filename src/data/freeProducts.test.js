@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import { FREE_PRODUCTS } from "./freeProducts.js";
 
 describe("FREE_PRODUCTS", () => {
-  it("lists unique products with marketplace and source urls when imported", () => {
+  it("lists unique products with marketplace and releases urls when imported", () => {
     const ids = FREE_PRODUCTS.map((product) => product.id);
 
     expect(FREE_PRODUCTS.length).toBeGreaterThanOrEqual(2);
@@ -14,7 +14,9 @@ describe("FREE_PRODUCTS", () => {
       expect(product.marketplaceUrl).toMatch(
         /^https:\/\/marketplace\.visualstudio\.com\/items\?itemName=/,
       );
-      expect(product.repoUrl).toMatch(/^https:\/\/github\.com\//);
+      expect(product.releasesUrl).toMatch(
+        /^https:\/\/github\.com\/wyvernsystems\/[\w-]+\/releases\/latest$/,
+      );
       expect(product.installId).toMatch(/^WyvernSystemsLLC\./);
       expect(product.iconUrl).toMatch(/^https:\/\/WyvernSystemsLLC\.gallerycdn\.vsassets\.io\//);
     }

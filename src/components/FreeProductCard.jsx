@@ -29,7 +29,7 @@ export default function FreeProductCard({ product }) {
 
   return (
     <article
-      className={`free-product-card free-product-card--${product.accent}`}
+      className="free-product-card"
       aria-labelledby={`free-product-${product.id}-title`}
     >
       <div className="free-product-card__body">
@@ -74,12 +74,12 @@ export default function FreeProductCard({ product }) {
           </a>
           <a
             className="free-product-card__btn free-product-card__btn--ghost"
-            href={product.repoUrl}
+            href={product.releasesUrl}
             rel="noopener noreferrer"
             target="_blank"
           >
             <GitHubIcon className="free-product-card__logo" size={18} />
-            Source
+            Releases
           </a>
         </div>
         <div className="free-product-card__install">
