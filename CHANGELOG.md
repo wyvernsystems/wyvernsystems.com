@@ -29,7 +29,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- The top-right nav now shows LinkedIn and ronpicard.com icons, matching ronpicard.com, in place of the Consulting, Products, and Contact links.
+- The top-right nav now shows LinkedIn, Wyvern Systems GitHub, and ronpicard.com icons, matching ronpicard.com, in place of the Consulting, Products, and Contact links. The LinkedIn and GitHub icons use each brand's official logo colors.
 - The section nav brand is now the green wyvern mark instead of the "WS" monogram, and the same mark is the browser tab, bookmark, and home-screen icon (replacing the generic chevron).
 - The company name now reads "Wyvern Systems LLC" (no comma) everywhere, matching the registered legal name.
 - The search and link-preview description now describes the company instead of the site's visual theme.

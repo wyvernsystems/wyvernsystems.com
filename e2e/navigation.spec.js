@@ -1,7 +1,7 @@
 import { expect, test } from "@playwright/test";
 
 test.describe("top nav", () => {
-  test("shows linkedin and ronpicard.com icons that open in a new tab when loaded", async ({
+  test("shows linkedin, github, and ronpicard.com icons that open in a new tab when loaded", async ({
     page,
   }) => {
     await page.goto("/");
@@ -15,6 +15,12 @@ test.describe("top nav", () => {
     );
     await expect(linkedin).toHaveAttribute("target", "_blank");
     await expect(linkedin).toHaveAttribute("rel", "noopener noreferrer");
+
+    const github = nav.getByRole("link", { name: "GitHub" });
+    await expect(github).toBeVisible();
+    await expect(github).toHaveAttribute("href", "https://github.com/wyvernsystems");
+    await expect(github).toHaveAttribute("target", "_blank");
+    await expect(github).toHaveAttribute("rel", "noopener noreferrer");
 
     const ron = nav.getByRole("link", { name: "Ron Picard" });
     await expect(ron).toBeVisible();

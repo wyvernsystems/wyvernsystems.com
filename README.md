@@ -40,7 +40,7 @@ Two layers:
 
 **Unit tests** render one component (or helper) with sample data and assert on the resulting HTML — for example that `FreeProductCard` renders the correct Marketplace `href` and `rel="noopener noreferrer"`.
 
-**E2E tests** behave like a user: open `/`, check headings and links, check the top nav LinkedIn and ronpicard.com icons, and verify production security meta on the preview server.
+**E2E tests** behave like a user: open `/`, check headings and links, check the top nav LinkedIn, GitHub, and ronpicard.com icons, and verify production security meta on the preview server.
 
 Coverage (unit tests only):
 

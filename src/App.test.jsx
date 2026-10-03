@@ -82,15 +82,20 @@ describe("App", () => {
     expect(mark).toHaveClass("section-nav__mark");
   });
 
-  it("shows linkedin and ronpicard.com icons in the top nav instead of section links when rendered", () => {
+  it("shows linkedin, github, and ronpicard.com icons in the top nav instead of section links when rendered", () => {
     render(<App />);
 
     const nav = screen.getByRole("navigation", { name: "Site and social" });
     const linkedin = within(nav).getByRole("link", { name: "LinkedIn" });
     expect(linkedin).toHaveAttribute("href", "https://www.linkedin.com/in/ron-picard-8b7b3059");
+    expect(linkedin.querySelector('[fill="#0A66C2"]')).toBeInTheDocument();
+    const github = within(nav).getByRole("link", { name: "GitHub" });
+    expect(github).toHaveAttribute("href", "https://github.com/wyvernsystems");
+    expect(github.querySelector('path[fill="#FFFFFF"]')).toBeInTheDocument();
+    expect(github.querySelector('[fill="currentColor"]')).not.toBeInTheDocument();
     const ron = within(nav).getByRole("link", { name: "Ron Picard" });
     expect(ron).toHaveAttribute("href", "https://ronpicard.com");
-    for (const link of [linkedin, ron]) {
+    for (const link of [linkedin, github, ron]) {
       expect(link).toHaveAttribute("target", "_blank");
       expect(link).toHaveAttribute("rel", "noopener noreferrer");
     }
